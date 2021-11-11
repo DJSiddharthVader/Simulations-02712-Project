@@ -36,8 +36,8 @@ __Authors:__ Sid, Neel, Evan, Sarah, Deepika
 ## Compiling Documents
 
 Requires:
-  - [ ] `GNU make`
-  - [ ] `pandoc`
+  - `GNU make`
+  - `pandoc`
 
 I created a Makefile for running the pandoc commands to compile the documents more easily.
 You can compile the documents with the Makefile as follows
