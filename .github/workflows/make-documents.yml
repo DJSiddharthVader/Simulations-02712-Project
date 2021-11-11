@@ -1,0 +1,6 @@
+name: make-documents
+on: [push]
+jobs:
+    steps:
+        uses: actions/checkout@v2
+        run: make documents
