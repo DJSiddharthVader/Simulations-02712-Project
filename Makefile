@@ -1,14 +1,11 @@
 DOC_DIR=./Documents
+OUT_DIR=$(DOC_DIR)/published
 # common resources
 BIBLIO=$(DOC_DIR)/citations.bib
 TEMPLATE=$(DOC_DIR)/template.tex
 FIG_DIR=$(DOC_DIR)/figures
 # Flags
 PFLAGS=-s --from markdown+citations --citeproc --bibliography $(BIBLIO) --resource-path $(FIG_DIR)
-# document dirs
-ODIR=$(DOC_DIR)/outline
-SDIR=$(DOC_DIR)/presentation
-RDIR=$(DOC_DIR)/report
 
 
 documents: outline slides report
@@ -16,20 +13,20 @@ documents: outline slides report
 outline:
 	@pandoc $(PFLAGS) \
 			--template=$(TEMPLATE) \
-			$(ODIR)/outline.md -o $(ODIR)/outline.pdf
-	@echo "made $(ODIR)/outline.pdf"
+			$(DOC_DIR)/outline.md -o $(OUT_DIR)/outline.pdf
+	@echo "made $(OUT_DIR)/outline.pdf"
 
 slides:
 	@pandoc $(PFLAGS) \
 	        -t beamer -i --slide-level=2 \
-			$(SDIR)/slides.md -o $(SDIR)/slides.pdf
-	@echo "made $(SDIR)/slides.pdf"
+			$(DOC_DIR)/slides.md -o $(OUT_DIR)/slides.pdf
+	@echo "made $(OUT_DIR)/slides.pdf"
 
 report:
 	@pandoc $(PFLAGS) \
 	        --template=$(TEMPLATE) \
-			$(RDIR)/report.md -o $(RDIR)/report.pdf
-	@echo "made $(RDIR)/report.pdf"
+			$(DOC_DIR)/report.md -o $(OUT_DIR)/report.pdf
+	@echo "made $(OUT_DIR)/report.pdf"
 
 test:
 	@echo $(DOC_DIR)

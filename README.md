@@ -43,9 +43,9 @@ I created a Makefile for running the pandoc commands to compile the documents mo
 You can compile the documents with the Makefile as follows
 
 ```bash
-$ make outline   # make the outline ./Documents/outline/outline.pdf
-$ make slides    # make the slides ./Documents/presentation/slides.pdf
-$ make report    # make the final report ./Documents/report/report.pdf
+$ make outline   # make the outline ./Documents/published/outline.pdf
+$ make slides    # make the slides ./Documents/published/slides.pdf
+$ make report    # make the final report ./Documents/published/report.pdf
 $ make documents # all of the above
 ```
 
