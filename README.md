@@ -51,9 +51,9 @@ I created a Makefile for running the pandoc commands to compile the documents mo
 You can compile the documents with the Makefile as follows
 
 ```bash
-$ make outline   # make the outline ./Documents/published/outline.pdf
-$ make slides    # make the slides ./Documents/published/slides.pdf
-$ make report    # make the final report ./Documents/published/report.pdf
+$ make outline   # make the outline ./published/outline.pdf
+$ make slides    # make the slides ./published/slides.pdf
+$ make report    # make the final report ./published/report.pdf
 $ make documents # all of the above
 $ make publish   # run documents and git push everything
 ```

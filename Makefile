@@ -1,5 +1,5 @@
 DOC_DIR=./Documents
-OUT_DIR=$(DOC_DIR)/published
+OUT_DIR=./Published
 # common resources
 BIBLIO=$(DOC_DIR)/citations.bib
 TEMPLATE=$(DOC_DIR)/template.tex

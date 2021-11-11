@@ -4,8 +4,8 @@ theme: Dresden
 header-includes:
 - \usepackage{booktabs}
 
-title: "Project: Biological Modeling & Simulations 02-712"
-subtitle: How Quorum Sensing Interactions Affect Microbial Population Structures
+title: How Quorum Sensing Interactions Affect Microbial Population Structures
+subtitle: "02712 Final Project"
 author: Sid, Neel, Sarah, Deepika, Evan
 date: \today
 institute: Carnegie Mellon University
