@@ -12,7 +12,7 @@ publish: documents
 	@git commit -m 'recompiled documents with makefile'
 	@git push
 
-documents: outline slides report
+documents: slides report
 
 outline:
 	@pandoc $(PFLAGS) \

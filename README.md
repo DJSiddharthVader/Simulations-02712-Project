@@ -54,7 +54,7 @@ You can compile the documents with the Makefile as follows
 $ make outline   # make the outline ./published/outline.pdf
 $ make slides    # make the slides ./published/slides.pdf
 $ make report    # make the final report ./published/report.pdf
-$ make documents # all of the above
+$ make documents # make report and slides
 $ make publish   # run documents and git push everything
 ```
 
