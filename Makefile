@@ -7,6 +7,10 @@ FIG_DIR=$(DOC_DIR)/figures
 # Flags
 PFLAGS=-s --from markdown+citations --citeproc --bibliography $(BIBLIO) --resource-path $(FIG_DIR)
 
+publish: documents
+	@git add $(OUT_DIR)/*.pdf
+	@git commit -m 'recompiled documents with makefile'
+	@git push
 
 documents: outline slides report
 

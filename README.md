@@ -47,6 +47,7 @@ $ make outline   # make the outline ./Documents/published/outline.pdf
 $ make slides    # make the slides ./Documents/published/slides.pdf
 $ make report    # make the final report ./Documents/published/report.pdf
 $ make documents # all of the above
+$ make publish   # run documents and git push everything
 ```
 
 ## Running the Code
