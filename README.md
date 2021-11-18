@@ -10,21 +10,23 @@ __Authors:__ Sid, Neel, Evan, Sarah, Deepika
 - [ ] We implement the model described in @eldar_2011
   - [ ] ideally we use actual python ODE solvers for efficiency/accuracy reasons
   - [ ] stopping conditions is either set time limit or reaching a stationary distribution
+    - should keep track of how many generations it takes
   - [ ] develop a "null" model to compare against
     - [ ] I think $K_{ac} = \vec{0}$ makes sense (no QS systems in any strains)
 
 - [ ] Write code to analyze simulations results
-   - [ ] total population growth rate
-   - [ ] time until at stationary distribution
-   - [ ] "difference" between terminal/initial state
-     - population diversity at terminal state
-       - [ ] alpha/beta diversity
-       - [ ] Bray-Curtis distance
-   - [ ] total populations size
-   - [ ] number of species that go extinct/ how quickly
+   - [x] statistics to calculate
+     - [x] population growth rate
+     - [x] "difference" between terminal/initial state
+       - [x] skewness of the abundance vector
+       - [x] alpha diversity
+         - [x] species richness
+         - [x] Shannon index
+       - [x] beta diversity
+         - [x] Bray-Curtis distance
 
 - [ ] Matrix curation/generation code
-  - [ ] generate random matrices with a set sparsity
+  - [x] generate random matrices with a set sparsity
   - [ ] use matrices that represent special adjacency graphs (e.g. planar graphs)
   - [ ] find matrices inspired by actual bacterial systems
     - @hiller_2020 may be a good starting point
@@ -44,6 +46,10 @@ __Authors:__ Sid, Neel, Evan, Sarah, Deepika
   - [ ] are there medical/research/environmental reasons to care about this?
   - [ ] steal the cool diagram from @eldar_2011 (Fig 2?)
 
+## Running the Code
+
+## Replicating results
+
 ## Compiling Documents
 
 Requires:
@@ -60,8 +66,4 @@ $ make report    # make the final report ./published/report.pdf
 $ make documents # make report and slides
 $ make publish   # run documents and git push everything
 ```
-
-## Running the Code
-
-## Replicating results
 
