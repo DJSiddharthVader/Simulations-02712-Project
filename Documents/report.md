@@ -33,11 +33,34 @@ institute:
 abstract: "example abstract"
 ---
 
+*[OTU]: Operational Taxonomic Unit
+
 # Background
 
 # Methods
 
 # Results
+
+## Comparing QS interaction matrices
+
+### How Sparsity affects model dynamics
+
+### Examining well-known adjacency matrices
+
+## Simulations with OTU data
+The data we use is an OTU table $O_I$, an $m\times n$ matrix representing the abundance of $m$ OTUs across $n$ samples.
+For each sample we use the abundance vector as our initial state and run the simulation with a given set of parameters.
+So after all simulations we get an OTU table $O_T$ representing the terminal state of the model (abundance vector) for each initial state.
+Given the tables $O_I, O_T$ for each sample we can calculate 
+
+- difference in $\alpha$-diversity (richness and Shannon Index)
+- $\beta$-diversity (Bray-Curtis distance)
+- difference in skewness (Fisher's Coefficient of skewness)
+- total population growth rate 
+
+and we examine how these statistics vary when using different $K_a$ matrices and the same $O_I$.
+
+## Simulation with an empirically derived QS interaction matrix
 
 # Discussion
 
