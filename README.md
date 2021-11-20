@@ -15,6 +15,10 @@ __Authors:__ Sid, Neel, Evan, Sarah, Deepika
     - [ ] I think $K_{ac} = \vec{0}$ makes sense (no QS systems in any strains)
 
 - [ ] Write code to analyze simulations results
+   - [ ] produce a dataframe of stats from a simulation runs
+     - [ ] ...
+   - [ ] Code for generating results and plots
+     - [ ] ...
    - [x] statistics to calculate
      - [x] population growth rate
      - [x] "difference" between terminal/initial state
@@ -27,7 +31,7 @@ __Authors:__ Sid, Neel, Evan, Sarah, Deepika
 
 - [ ] Matrix curation/generation code
   - [x] generate random matrices with a set sparsity
-  - [ ] use matrices that represent special adjacency graphs (e.g. planar graphs)
+  - [x] use matrices that represent interesting graph patterns
   - [ ] find matrices inspired by actual bacterial systems
     - @hiller_2020 may be a good starting point
 
@@ -60,10 +64,10 @@ I created a Makefile for running the pandoc commands to compile the documents mo
 You can compile the documents with the Makefile as follows
 
 ```bash
-$ make outline   # make the outline ./published/outline.pdf
-$ make slides    # make the slides ./published/slides.pdf
-$ make report    # make the final report ./published/report.pdf
+$ make outline   # make the outline ./Published/outline.pdf
+$ make slides    # make the slides ./Published/slides.pdf
+$ make report    # make the final report ./Published/report.pdf
 $ make documents # make report and slides
-$ make publish   # run documents and git push everything
+$ make publish   # run documents and git push them 
 ```
 
