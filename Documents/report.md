@@ -17,7 +17,7 @@ subtitle: "02-712 Final Project"
 date: \today
 author:
   - name: Siddharth Reed
-    affiliation: 1
+    affiliation: 1,2
     email: slreed@andrew.cmu.edu
   - name: Neel
     affiliation: 1
@@ -30,6 +30,8 @@ author:
 institute:
   - num: 1
     name: Computational Biology Department, Carnegie Mellon University
+  - num: 2
+    name: Department of Being Sick, Cool University
 abstract: "example abstract"
 ---
 
