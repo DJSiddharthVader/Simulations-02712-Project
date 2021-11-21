@@ -1,17 +1,55 @@
 ---
 nocite: '@*'
-theme: Dresden
+theme: Ilmenau
+colortheme: dolphin
 header-includes:
 - \usepackage{booktabs}
+- \setbeamercolor{block title}{bg=blue!50}
+- \setbeamercolor{block body}{bg=blue!10}
+- \setbeamertemplate{itemize item}{\scriptsize$\blacktriangleright$}
+- \setbeamertemplate{itemize subitem}{\scriptsize$\diamond$}
+- \setbeamertemplate{section page}{\begin{centering} \usebeamerfont{section title}\insertsection\par\end{centering}}
 
-title: How Quorum Sensing Interactions Affect Microbial Population Structures
-subtitle: "02712 Final Project"
+title: How Quorum Sensing Interactions Affect Microbial Population Structure
+subtitle: 02712 Final Project
 author: Sid, Neel, Sarah, Deepika, Evan
 date: \today
 institute: Carnegie Mellon University
 ---
 
-# Example Section Title 1
+# Background
+
+## Quorum-Sensing Systems
+
+## Public Goods and Cheating
+
+## Maintaining Freeloaders as a Diversity Reservoir
+
+## Signal-Receptor Activation Matrix $K_{ac}$
+
+- Represents all receptors-signal pairs ($R_iS_i$) present in at least 1 OTU
+- $K_{ac}$ is of dimension $|R|\times|S|$
+- Different sets of receptor-signal combinations can produce the same $K_{ac}$
+
+---
+
+\onslide<1->
+### Facultative Cheaters 
+Matrix for 2 strains $R_1S_1$ and $R_2S_2$ $\qquad\qquad\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}\hfill$
+
+\onslide<2->
+### Obligate Cheater
+Matrix for 2 strains $R_1S_1$ and $R_0S_0$ \qquad\qquad$\begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}\hfill$
+
+\onslide<3->
+### Custom Matrix
+Matrix for 2 strains $R_1R_2S_1$ and $R_2S_2$ $\qquad\quad\begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix}\hfill$
+
+# Model
+
+# Results
+
+# Example Section 
 
 ## Citation Example
 - the citation file is at `./Documents/citations.bib`
@@ -34,35 +72,7 @@ institute: Carnegie Mellon University
 :::
 ::::
 
-## Math and sub lists
-- Haploid population
-- infinite population
-- Each generation we have 1) gene transfer 2) mutation and 3) selection
-  - no sexual reproduction, consider gene transfer step
-  - Gene transfer is  analogous to oblique learning from Fogarty L. 2018
-  - mutation is $r \to R$ or $R \to r$
-
-# Example Section Title 2
-
-## Example Table
-\begin{table}
-    \centering
-    \begin{tabular}{@{}lll@{}}
-        \toprule
-        \multicolumn{2}{c}{Allele} & Description \\
-        \cmidrule(l){1-2}
-        Major & Minor & \\
-        \midrule
-        $R$ & $r$ & has/does not have resistance gene \\
-        $H$ & $h$ & HGT machinery is expressed/not expressed  \\
-        $C$ & $c$ & CRISPR-Cas is expressed/not expressed \\
-        \bottomrule
-    \end{tabular}
-    \caption{Allele definitions}
-\end{table}
-
-
-## More complicated table with math
+## table with math
 \begin{table}
     \centering
     $\begin{array}{llll}
@@ -108,16 +118,5 @@ def foo(bar):
             print(bar)
     return None
 ```
-
-## slide with subsections
-
-### Slide subsection 1
-- resistance allele dominates even outside of antibiotic pressure
-- environmental turnover rate significantly affects genotype frequencies
-
-### Slide subsection 2
-  - explore parameter space and look for empirical justifications
-  - model phage population dynamics directly
-  - incorporate terms that reflect biological trade-off of HGT/CRISPR
 
 ## Bibliography {.allowframebreaks}
