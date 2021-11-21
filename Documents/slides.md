@@ -28,7 +28,7 @@ institute: Carnegie Mellon University
 ## Signal-Receptor Activation Matrix $K_{ac}$
 
 - Represents all receptors-signal pairs ($R_iS_i$) present in at least 1 OTU
-- $K_{ac}$ is of dimension $|R|\times|S|$
+- $K_{ac}$ is of dimension $|R|\times|S|=|N|\times|N|$
 - Different sets of receptor-signal combinations can produce the same $K_{ac}$
 
 ---
