@@ -8,7 +8,9 @@ header-includes:
 - \setbeamercolor{block body}{bg=blue!10}
 - \setbeamertemplate{itemize item}{\scriptsize$\blacktriangleright$}
 - \setbeamertemplate{itemize subitem}{\scriptsize$\diamond$}
+- \setbeamertemplate{enumerate items}{\insertenumlabel.}
 - \setbeamertemplate{section page}{\begin{centering} \usebeamerfont{section title}\insertsection\par\end{centering}}
+
 
 title: How Quorum Sensing Interactions Affect Microbial Population Structure
 subtitle: 02712 Final Project
@@ -95,7 +97,7 @@ Matrix for 2 strains $R_1R_2S_1$ and $R_2S_2$ $\qquad\quad\begin{bmatrix} 1 & 0 
     \label{ft}
 \end{table}
 
-## Lots of math
+## Math and Numbered List
 - $g$ represents each genotype
 1. **Gene Transfer:** $x_g^t = x_g + \sum_{x_R} x_{\neg g}x_R h(x_{\neg g},x_R)$
    - if $g=RCH$ then $\neg g=rCH$, same for $CH,cH,Ch,ch$
