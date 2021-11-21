@@ -50,18 +50,34 @@ __Authors:__ Sid, Neel, Evan, Sarah, Deepika
   - [ ] are there medical/research/environmental reasons to care about this?
   - [ ] steal the cool diagram from @eldar_2011 (Fig 2?)
 
+
 ## Running the Code
 
-## Replicating results
-
-## Compiling Documents
+### Requirements
 
 Requires:
   - `GNU make`
   - `pandoc`
+  - `python >= 3.7`
+    - Use conda and the provided `environment.yml` for dependencies
+    - `$ conda env create -f environment.yml`
 
-I created a Makefile for running the pandoc commands to compile the documents more easily.
-You can compile the documents with the Makefile as follows
+I have provided a `Makefile` for to help replicate our results and produce documents, the specific commands to use are detailed below.
+
+### Using the Model
+
+If you want to run your own simulation using this model you can do the following
+
+```bash
+$ conda activate proj_02712
+$ python src/model.py temp arguments idk fill in later
+```
+
+### Replicating our Results
+
+### Compiling Documents
+
+You can compile the documents using the Makefile as follows
 
 ```bash
 $ make outline   # make the outline ./Published/outline.pdf
