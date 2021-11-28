@@ -1,8 +1,8 @@
 # Notes on Eldar 2011
 
 ## Assumptions:
-- Very basic assumption is that QS directlty controls the levels the
-publilc good production
+- Very basic assumption is that QS directly controls the levels the
+public good production
 - Signal production is constitutive and quorum response is density dependent function of signal-bound receptor
 - QS system is composed of 3 genes encoding signaling molecule (S), receptor molecule (R), and public good product
 - The public good is a secreted enzyme whose product is a usable nutrient
