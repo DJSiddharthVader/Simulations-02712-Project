@@ -4,8 +4,10 @@ OUT_DIR=./Published
 BIBLIO=$(DOC_DIR)/citations.bib
 TEMPLATE=$(DOC_DIR)/template.tex
 FIG_DIR=$(DOC_DIR)/figures
+RESULTS_DIR=./Results
+RESOURCES=$(RESULTS_DIR):$(FIG_DIR)
 # Flags
-PFLAGS=-s --from markdown+citations --citeproc --bibliography $(BIBLIO) --resource-path $(FIG_DIR)
+PFLAGS=-s --from markdown+citations -citeproc --bibliography $(BIBLIO) --resource-path $(RESOURCES)
 
 publish: documents
 	@git add $(OUT_DIR)/*.pdf
@@ -36,5 +38,4 @@ test:
 	@echo $(DOC_DIR)
 	@echo $(BIBLIO)
 	@echo $(TEMPLATE)
-	@echo $(FIG_DIR)
 	@echo $(PFLAGS)
