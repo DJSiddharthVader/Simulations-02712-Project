@@ -12,7 +12,7 @@ header-includes:
   - \usepackage{blkarray}
   - \usepackage{booktabs}
 
-title: How Quorum Sensing Interactions Affect Microbial Population Structures
+title: How Quorum Sensing Interactions Affect Population Structures
 subtitle: "02-712 Final Project"
 date: \today
 author:
