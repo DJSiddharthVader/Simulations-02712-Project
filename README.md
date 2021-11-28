@@ -36,19 +36,22 @@ __Authors:__ Sid, Neel, Evan, Sarah, Deepika
     - @hiller_2020 may be a good starting point
 
 - [ ] Simulate how this model works on microbiome data
-  - [ ] find microbiome dataset to use as initial conditions
-    - [ ] pre-computed OTU tables exist but may require some curation/cleaning/preprocessing to work with our model
-    - [ ] get OTU tables labeled with disease states (i.e. has IBD/ doesnt have IBD)
-      - [Git repo with several microbiome datasets](https://github.com/twbattaglia/MicrobeDS)
-      - [HMP search result](https://portal.hmpdacc.org/search/f?filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22sample.study_name%22,%22value%22:%5B%22IBDMDB%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22file.format%22,%22value%22:%5B%22Biological%20Observation%20Matrix%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22file.matrix_type%22,%22value%22:%5B%2216s_community%22%5D%7D%7D%5D%7D&pagination=%7B%22files%22:%7B%22count%22:20,%22total%22:23911,%22page%22:1,%22pages%22:1196,%22from%22:0,%22sort%22:%22file.format:desc,%22,%22size%22:20,%22sample_total%22:2375%7D%7D&facetTab=files)
+  - [x] Data and metadata from [IDBMDB](https://ibdmdb.org/tunnel/public/summary.html), OTU tables for IBD patients. (in `./Data/`)
+    - specifically use the 16S data from HMP2 and the sample metadata
+    - `./Data/taxonomic_profiles.tsv` is the OTU table
+    - `./Data/hmp2_metadata.tsv` is the raw sample metadata
+    - every sample has an ID corresponding to a column in the abundance table
+  - [x] clean metadata for easy use
+    - use the `./src/clean_metadata.py` script to clean the metadata
+    - produces the file `./Data/filtered_hmp2_metadata.tsv` 
+    - there is a `diagnosis` column with the IBD status of the patient
   - [ ] adapt model to take in this OTU data (should be easy)
-  - [ ] quantify distance of the terminal state from the model (abundance vector) to a known disease state
 
 - [ ] Start writing the background, biological motivation for the final report and intro slides
   - [ ] what are QS systems?
   - [ ] what makes QS systems incompatible and how does this lead to "cheating"?
   - [ ] are there medical/research/environmental reasons to care about this?
-  - [ ] steal the cool diagram from @eldar_2011 (Fig 2?)
+  - [x] steal the cool diagram from @eldar_2011 (Fig 2?)
 
 
 ## Running the Code
