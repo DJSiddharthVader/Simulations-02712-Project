@@ -24,24 +24,33 @@ institute: Computational Biology Department, Carnegie Mellon University
 ## Quorum-Sensing Systems
 
 :::: {.columns}
-::: {.column width="50%"}
-![ @qs_diagram](qs_diagram.png){width=225}
+::: {.column width="55%"}
+![ @qs_diagram](qs_diagram.png){width=\textwidth}
 :::
 ::: {.column width="50%"}
-- stuff 
+- Signal-Receptor molecule pairs that modulate gene expression
+
+- Once threshold density is reached, enough signal is received to upregulated target genes
+
+- Can lead to biofilms, antibiotic production etc.
 :::
 ::::
 
 ## Public Goods and Cheating
 
 :::: {.columns}
-::: {.column width="50%"}
-![ @eldar_2011](eldar_2011_fig1.png){width=225}
+::: {.column width="55%"}
+![ @eldar_2011](eldar_2011_fig1.png){width=\textwidth}
 :::
 ::: {.column width="50%"}
 - When quorum is reached, bacteria produce a "public good"
+
 - Everyone benefits from this even if they don't contribute
+
+- Must produce the receptor, signal molecule and good to contribute
+
 - Cheaters DO prosper (if you are a bacterium)
+
 :::
 ::::
 
