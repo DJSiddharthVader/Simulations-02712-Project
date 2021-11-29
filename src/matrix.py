@@ -104,19 +104,10 @@ def pattern_matrix(pattern, n):
         # simple cycle graph on all nodes
         graph = gen.classic.cycle_graph(n)
     elif pattern == 'complete':
-        # grid complete graph (every receptor interacts with every singal)
+        # every receptor binds every singal
         graph = gen.complete_graph(n)
-    # elif pattern == 'windmill':
-    #     # generate windmill graph with randomly chosen
-    #     # n,k but make sure there are fewer cliques
-    #     # than nodes in each clique
-    #     k = np.random.randint(2, n)
-    #     k = 2
-    #     a, b = int(min(n/k, k)), int(max(n/k, k))
-    #     print('k = ', k, 'a = ', a, 'b = ', b)
-    #     graph = gen.windmill_graph(n, 2)
-    #     graph = gen.community.windmill_graph(n, k)
     elif pattern == 'star':
+        # central node connected to all others
         graph = gen.classic.star_graph(n-1)
     elif pattern == 'empirical':
         # graph that resembles a system of
