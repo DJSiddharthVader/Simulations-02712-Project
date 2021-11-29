@@ -16,6 +16,18 @@ params = {
 }
 
 
+def make_init(N):
+    """make_init.
+    Make tthe initial condition vector given a
+    vector of initial strain abundances
+
+    :param N: vector of strain abundances
+    """
+    N = np.asarray(N)
+    S = np.asarray([0] * len(N))
+    return np.concatenate([N, S, [0], [0]])
+
+
 def iterator(t, state, r, gamma_n, beta_S, beta_E, j_P_d,
              V_max, beta_P_D, m, K_RS, K_ac):
     """iterator.
@@ -37,14 +49,15 @@ def iterator(t, state, r, gamma_n, beta_S, beta_E, j_P_d,
     :param K_ac: receptor-signal activation matrix
     """
     # Set up state variables
-    numStrains = (len(state)-2)/2  # number of strains being simulated
-    n, S, = state[:numStrains], state[numStrains:numStrains * 2],
-    P, E = state[-2], state[-1]
+    numStrains = int((len(state)-2)/2)  # number of strains being simulated
+    n, S, = state[:numStrains], state[numStrains:numStrains * 2]
+    n, S = n.reshape((n.shape[0],)), S.reshape((S.shape[0],))
+    E, P = state[-2], state[-1]
     n_tot = sum(n)
     # Build active receptor-signal complex vector f(R_ac)
     numerator = np.matmul(S.T, K_ac)
     denominator = np.matmul(S.T, K_ac)  # + np.matmul(S.T, K_in)
-    R_ac = numerator / (K_RS * denominator)
+    R_ac = numerator / (K_RS + denominator)
     f_R_ac = np.apply_along_axis(lambda x: x**m, 0, R_ac)
     # Calculating dn/dt
     dndt = (P / (P + 1)) * (1 - r * f_R_ac) - n_tot - gamma_n
@@ -53,38 +66,32 @@ def iterator(t, state, r, gamma_n, beta_S, beta_E, j_P_d,
     dSdt = beta_S * (n - S)
     # Calculating dE/dt
     dEdt = np.dot(f_R_ac, n) - beta_E * E
+    dEdt = np.asarray([dEdt]).reshape((1,))
     # Calculating dP/dt
     dPdt = j_P_d + V_max * E - beta_P_D * (P / (P + 1)) * n_tot
+    dPdt = np.asarray([dPdt]).reshape((1,))
     return np.concatenate([dndt, dSdt, dEdt, dPdt])
 
 
-def make_init(N):
-    """make_init.
-    Make tthe initial condition vector given a
-    vector of initial strain abundances
-
-    :param N: vector of strain abundances
-    """
-    N = np.asarray(N)
-    S = np.asarray([0] * len(N))
-    return np.concatenate([N, S, [0], [0]])
-
-
-def simulate(matrix, N, end, params):
+def simulate(K_ac, N, end, params=params):
     """simulate.
     Runs a simulation of the model with the given conditions
 
     :param N:      Initial bacterial abundance vector for
                    the simulation
     :param end:    Time to simulate until.
-    :param params: parameters for the model, dont really
+    :param params: Parameters for the model, dont really
                    need to be changed as we only ever use
                    the parameters from @eldar_2011
     """
     init = make_init(N)
-    params["K_ac"] = matrix
-    return solve_ivp(iterator,
-                     t_span=(0, end),
-                     y0=init,
-                     args=params,
-                     vectorized=True)
+    params["K_ac"] = K_ac
+    sim = solve_ivp(iterator,
+                    t_span=(0, end),
+                    y0=init,
+                    args=params.values(),
+                    vectorized=True)
+    N = sim.y[:len(N)]  # matrix of strain abundance x timestep
+    S = sim.y[len(N): len(N)*2]  # matrix of signal abundance x timestep
+    E, P = sim.y[-2], sim.y[-1]
+    return sim.t, N, S, E, P
