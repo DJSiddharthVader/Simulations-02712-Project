@@ -118,4 +118,4 @@ def pattern_matrix(pattern, n):
         graph = None
     else:
         raise ValueError('Invalid matrix pattern')
-    return nx.adjacency_matrix(graph)
+    return nx.adjacency_matrix(graph).toarray().reshape((n, n))
