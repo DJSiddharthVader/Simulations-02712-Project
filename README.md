@@ -52,8 +52,8 @@ __Authors:__ Sid, Neel, Evan, Sarah, Deepika
   - [ ] adapt model to take in this OTU data (should be easy)
 
 - [ ] Start writing the background, biological motivation for the final report and intro slides
-  - [ ] what are QS systems?
-  - [ ] what makes QS systems incompatible and how does this lead to "cheating"?
+  - [x] what are QS systems?
+  - [x] what makes QS systems incompatible and how does this lead to "cheating"?
   - [ ] are there medical/research/environmental reasons to care about this?
   - [x] steal the cool diagram from @eldar_2011 (Fig 2?)
 
