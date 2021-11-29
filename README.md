@@ -7,14 +7,16 @@ __Authors:__ Sid, Neel, Evan, Sarah, Deepika
 
 ## TODO
 
-- [ ] We implement the model described in @eldar_2011
-  - [ ] ideally we use actual python ODE solvers for efficiency/accuracy reasons
-  - [ ] stopping conditions is either set time limit or reaching a stationary distribution
-    - should keep track of how many generations it takes
-  - [ ] develop a "null" model to compare against
-    - [ ] I think $K_{ac} = \vec{0}$ makes sense (no QS systems in any strains)
+- [x] We implement the model described in @eldar_2011
+  - [x] ideally we use actual python ODE solvers for efficiency/accuracy reasons
+  - [x] stopping conditions is either set time limit 
 
 - [ ] Write code to analyze simulations results
+   - [ ] figure out simulations to run and analyze
+     - which matrices
+     - which initial conditions 
+     - how long?
+     - figure out what is space/time efficient to do
    - [ ] produce a dataframe of stats from a simulation runs
      - [ ] ...
    - [ ] Code for generating results and plots
@@ -30,6 +32,8 @@ __Authors:__ Sid, Neel, Evan, Sarah, Deepika
          - [x] Bray-Curtis distance
 
 - [ ] Matrix curation/generation code
+  - [x] develop a "null" model to compare against
+    - I think $K_{ac} = \vec{0}$ makes sense (no QS systems in any strains)
   - [x] generate random matrices with a set sparsity
   - [x] use matrices that represent interesting graph patterns
   - [ ] find matrices inspired by actual bacterial systems
