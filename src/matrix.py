@@ -77,6 +77,19 @@ def random_matrix_generator(n, s, m=-1):
         yield matrix
 
 
+def random_matrix(n, s, m=-1):
+    """random_matrix.
+    Return a random matrix with the specific
+    level of sparsity s. Wrapper generator
+
+    :param n: numer of rows
+    :param s: sparsity param (in [0,1])
+    :param m: number of cols, if not specified matrix is square
+    """
+    *_, final = iter(random_matrix_generator(n, s, m=m))
+    return final
+
+
 def pattern_matrix(pattern, n):
     """patterned_matrix.
     Return a matrix that is an adjacency matrix
