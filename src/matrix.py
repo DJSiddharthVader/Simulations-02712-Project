@@ -77,7 +77,7 @@ def random_matrix_generator(n, s, m=-1):
         yield matrix
 
 
-def patterned_matrix(pattern, n):
+def pattern_matrix(pattern, n):
     """patterned_matrix.
     Return a matrix that is an adjacency matrix
     of a specific graph, generally taken from
