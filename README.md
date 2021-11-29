@@ -57,6 +57,13 @@ __Authors:__ Sid, Neel, Evan, Sarah, Deepika
   - [ ] are there medical/research/environmental reasons to care about this?
   - [x] steal the cool diagram from @eldar_2011 (Fig 2?)
 
+- [ ] Include plots and figures in presentation and paper
+  - [ ] heatmap of k_ac matrix (methods, also results for comparison with next plot)
+  - [ ] time vs. strain abundance for different sparsity (results)
+  - [ ] time vs. model dynamics (strain abundances), line plot (results)
+  - [ ] time vs. model properties (alpha/beta diversity, growth rate, etc.) (results)
+    - try making all of these plots, use ones that give interesting results
+    - can also try to plot multiple lines on one graph (i.e. time vs. multiple model properties, time vs. one property but for diff. sparsities, etc.)
 
 ## Running the Code
 
