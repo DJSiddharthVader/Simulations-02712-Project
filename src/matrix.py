@@ -97,7 +97,9 @@ def pattern_matrix(pattern, n):
     elif pattern == 'barbell':
         # 2 complete subgraphs of size n/2 connected
         # by a single edge
-        graph = gen.classic.barbell_graph(n/2, 0)
+        if n%2 != 0:
+            print('barbell graph must take in an even n value > 2')
+        graph = gen.classic.barbell_graph(int(n/2), 0)
     elif pattern == 'cycle':
         # simple cycle graph on all nodes
         graph = gen.classic.cycle_graph(n)
