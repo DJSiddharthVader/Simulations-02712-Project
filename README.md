@@ -64,6 +64,7 @@ __Authors:__ Sid, Neel, Evan, Sarah, Deepika
   - [ ] time vs. model properties (alpha/beta diversity, growth rate, etc.) (results)
     - try making all of these plots, use ones that give interesting results
     - can also try to plot multiple lines on one graph (i.e. time vs. multiple model properties, time vs. one property but for diff. sparsities, etc.)
+  - [ ] distributions of growth rates for a matrix (can do several matrices)
 
 ## Running the Code
 
