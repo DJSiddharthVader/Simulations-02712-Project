@@ -84,6 +84,8 @@ def simulate(K_ac, N, end, params=params):
                    need to be changed as we only ever use
                    the parameters from @eldar_2011
     """
+    if len(N) != len(K_ac):
+        raise ValueError('must have as many initial values as cols in matrix')
     init = make_init(N)
     params["K_ac"] = K_ac
     sim = solve_ivp(iterator,
