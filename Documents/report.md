@@ -41,6 +41,24 @@ abstract: "example abstract"
 
 # Methods
 
+## Basic QS Interaction Model
+
+### Assumptions 
+- Very basic assumption is that QS directly controls the levels the public good production
+- Signal production is constitutive and quorum response is density dependent function of signal-bound receptor
+- QS system is composed of 3 genes encoding signaling molecule ($S$), receptor molecule ($R$), and public good product
+- The public good is a secreted enzyme whose product is a usable nutrient
+- Growth rate is dependent on the level of usable nutrient, Hollings type II term
+- Producing the public good reduces growth rate
+- Density dependent cell death, leading to a logistic form of growth equation
+- In the two divergent allele model (R1,R2) and (S1,S2), only 1 mutation allows the transition between alleles. R1 can only bind S1 and R2 can only bind S2
+- The public good is an Exo-enzyme ($E$), that  catalyzes the cleavage of a complex nutrient ($P$) into a transportable form ($P_d$)
+  - Level of $P$ is constant  
+- A fraction $r$ of the growth potential is diverted from growth to enzyme production at max production level
+- Quorum response function is a monotonically increasing function with maximum of 1
+- $R$-$S$ interaction occurs on a much faster time scale so they are in a quasi steady state and levels of receptor is constant --> Michaelis Menton Relationship between $[RS]$ and $S$
+- Quorum response form is $f(x) = x^m$
+
 # Results
 
 ## Comparing QS interaction matrices
