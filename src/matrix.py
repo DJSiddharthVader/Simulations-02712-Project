@@ -41,19 +41,6 @@ no inhibhitory QS interactions).
 """
 
 
-def null_matrix(n, m=-1):
-    """null_matrix
-    Returns a matrix of all 0s, functions
-    as a null model with no QS interactions
-
-    :param n: numer of rows
-    :param m: number of cols, if not specified matrix is square
-    """
-    if m == -1:
-        m = n
-    return np.zeros((n, m))
-
-
 def random_matrix_generator(n, s, m=-1):
     """random_matrix_generator.
     Generator that returns a binary matrix
