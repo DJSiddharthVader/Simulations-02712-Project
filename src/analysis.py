@@ -15,20 +15,6 @@ The diversity measures are taken from @calle_2019
 """
 
 
-def make_random_abundances(size, num, lower, upper):
-    """make_random_abundances.
-    Create a random vector of bacterial abundances
-    in the desired shape and range, useful for
-    computing model statistics.
-
-    :param size: size of each populations
-    :param num: number of populations to generate
-    :param lower: lower bound on abundance
-    :param upper: upper bound on abundance
-    """
-    return np.random.uniform(lower, upper, [num, size])
-
-
 def normalize(abundance):
     """normalize.
     Normalize the abundance vector.
