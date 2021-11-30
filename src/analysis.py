@@ -1,8 +1,5 @@
 import numpy as np
-import pandas as pd
 from scipy.stats import skew
-import matrix
-import model
 
 
 """
@@ -16,23 +13,6 @@ the abundance vector at each time step of the model.
 
 The diversity measures are taken from @calle_2019
 """
-
-
-def sparsity_analysis(init, sparsity, end_time):
-    """sparsity_analysis.
-    Generate simulation data to analyze how K_ac
-    sparsity affects model dynamics.
-
-    :param init:  inital abudance vector
-    :param sparsity: maximum sparsity to test
-    :param end_time: time steps to simulate
-    """
-    rows, n = [], len(init)
-    for K_ac in matrix.random_matrix_generator(n, sparsity):
-        row = {"sparsity": sum(K_ac)/(n*n)}
-        t, N, S, E, P = model.simulate(K_ac, init, end_time)
-        rows.append(row)
-    return pd.DataFrame(rows)
 
 
 def normalize(abundance):
@@ -58,7 +38,7 @@ def growth_rate(timesteps):
 
 
 def skewness(abundance):
-    """skewness.
+    """skewness_.
     Calculate Fisher-Pearson coefficient of
     skewness for the abundance i.e. how far
     from normal are the abundaces distributed.
