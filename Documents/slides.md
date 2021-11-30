@@ -67,7 +67,16 @@ institute: Computational Biology Department, Carnegie Mellon University
 \onslide<3->
 ### Designing Cheaters to Disrupt Pathogen Growth
 
-# Model
+# Methods
+
+## Basic ODE Model
+
+![](eldar_title.png)
+\vspace{0.25em}
+
+- Equations taken from @eldar_2011
+- Deterministic ODE model of bacteria
+- We focused on QS interactions over Evolution
 
 ## Signal-Receptor Activation Matrix $K_{ac}$
 
