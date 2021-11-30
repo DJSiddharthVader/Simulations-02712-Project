@@ -92,5 +92,13 @@ or 3 strains $R_1S_1$, $R_2S_1$ and $R_2S_2$
 
 # Results
 
+## Comparing Different K_ac Matrices
+
+\vspace{1em}
+![](k_ac_comparisons.png)
+
+## How K_ac Sparsity Affects Model Dynamics
+
+## Using Gut Microbiome Data
 
 ## Bibliography {.allowframebreaks}

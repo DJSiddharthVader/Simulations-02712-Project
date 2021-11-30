@@ -1,3 +1,7 @@
+import matrix
+import model
+import matplotlib.pyplot as plt
+
 """
 Plotting utilities to generate figures
 
@@ -9,8 +13,6 @@ Plot idea:
    - model dynamics (just strain abundances as lines)
    - model properties (alpha/beta diversity, growth rate, etc.)
 """
-import matplotlib.pyplot as plt
-# import seaborn as sns
 
 
 def plot_model(results):
@@ -41,4 +43,63 @@ def plot_model(results):
     plt.tick_params(labelcolor='none', which='both',
                     top=False, bottom=False, left=False, right=False)
     plt.xlabel("Time")
+    plt.show()
+
+
+def run_model(K_ac, initial_N, time_steps,
+              params=model.params, show=True):
+    """run_model.
+    Wrapper for running the model and plotting results
+
+    :param K_ac: QS matrix
+    :param initial_N: initial bacterial abundances
+    :param time_steps: time steps to run the model
+    """
+    print('QS interaction matrix')
+    print(K_ac, K_ac.shape)
+    print('simulating...')
+    results = model.simulate(K_ac,
+                             initial_N,
+                             time_steps,
+                             params)
+    print('finished simulating!')
+    if show:
+        print('plotting...')
+        plot_model(results)
+    else:
+        return results
+
+
+def matrix_comparisons(initial_N, time_steps, params=model.params):
+    matrices = ['null', 'ident', 'star',
+                'cycle', 'barbell', 'complete']
+    # Get results for each matrix
+    mat_results = []
+    for mat in matrices:
+        K_ac = matrix.pattern_matrix(mat, len(initial_N))
+        results = model.simulate(K_ac, initial_N,
+                                 time_steps, params=params)
+        mat_results.append((results[0], results[1]))
+    # plot all together
+    fig, axs = plt.subplots(2, 3,
+                            sharex=True,
+                            sharey='row')
+    labels = ["N{}".format(i) for i in range(1, len(initial_N)+1)]
+    for i, ax in enumerate(axs.reshape(-1)):
+        t, N = mat_results[i]
+        ax.plot(t, N.T, label=labels)
+        ax.set_title(matrices[i])
+    # Formatting
+    handles, labels = ax.get_legend_handles_labels()
+    fig.legend(handles, labels, loc='right')
+    fig.add_subplot(111, frameon=False)
+    plt.tick_params(labelcolor='none', which='both',
+                    top=False, bottom=False, left=False, right=False)
+    plt.xlabel("Time")
+    fig.tight_layout()
+    # fig.suptitle("Comparison of Different K_ac Matrices")
+    fig.suptitle('Initial: ' + ', '.join(str(x) for x in initial_N))
+    plt.subplots_adjust(top=0.85, right=0.85, wspace=0)
+    plt.subplots_adjust(right=0.85, wspace=0)
+    plt.savefig('../Documents/figures/k_ac_comparisons.png')
     plt.show()
