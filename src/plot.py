@@ -81,6 +81,7 @@ def matrix_comparisons(initial_N, time_steps, params=model.params):
                                  time_steps, params=params)
         mat_results.append((results[0], results[1]))
     # plot all together
+    plt.rcParams["figure.figsize"] = 16, 9
     fig, axs = plt.subplots(2, 3,
                             sharex=True,
                             sharey='row')
@@ -98,8 +99,7 @@ def matrix_comparisons(initial_N, time_steps, params=model.params):
     plt.xlabel("Time")
     fig.tight_layout()
     # fig.suptitle("Comparison of Different K_ac Matrices")
-    fig.suptitle('Initial: ' + ', '.join(str(x) for x in initial_N))
-    plt.subplots_adjust(top=0.85, right=0.85, wspace=0)
-    plt.subplots_adjust(right=0.85, wspace=0)
+    fig.suptitle('Initial: ({})'.format(', '.join(str(x) for x in initial_N)))
+    plt.subplots_adjust(top=0.90, right=0.94, wspace=0)
     plt.savefig('../Documents/figures/k_ac_comparisons.png')
     plt.show()
