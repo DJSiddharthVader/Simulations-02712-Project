@@ -120,10 +120,9 @@ or 3 strains $R_1S_1$, $R_2S_1$ and $R_2S_2$
 
 \begin{center}
 \onslide<2->
-\Huge Cheating may help but cooperating is best! \\
-\vspace{0.1em}
-\onslide<3->
-\tiny (for bacteria)
+\Huge Cheating works...\onslide<3->\tiny(for bacteria)\\
+\onslide<4->
+\Huge but cooperating is better!\\
 \end{center}
 
 ## Bibliography {.allowframebreaks}
