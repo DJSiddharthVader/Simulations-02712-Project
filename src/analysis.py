@@ -36,7 +36,7 @@ def make_random_abundances(size, num, lower, upper):
     :param lower: lower bound on abundance
     :param upper: upper bound on abundance
     """
-    return np.random.uniform(lower, upper, (num, size))
+    return np.random.uniform(lower, upper, [num, size])
 
 
 # Statistics computed from all time steps
@@ -49,11 +49,13 @@ def compute_stats(N):
     """
     stats = {}
     stats["growth_rate"] = growth_rate(N.T)
-    N = np.apply_along_axis(normalize, 1, N.T)
-    stats["has_grown"] = has_grown(N)
-    stats["skew"] = skewness(N)
-    stats["shannon_index"] = shannon_index(N)
-    stats["bray_curtis"] = bray_curtis(N)
+    stats["has_grown"] = has_grown(N.T)
+    stats["skew"] = skewness(N.T)
+    stats["euclidian"] = euclidian(N.T)
+    # normalize for diversity metrics
+    N = np.apply_along_axis(normalize, 1, N.T).T
+    stats["shannon_index"] = shannon_index(N.T)
+    stats["bray_curtis"] = bray_curtis(N.T)
     return stats
 
 
@@ -78,6 +80,16 @@ def has_grown(timesteps):
     """
     t1s, tns = timesteps[0], timesteps[-1]
     return sum([1 for t1, tn in zip(t1s, tns) if tn > t1])/len(t1s)
+
+
+def euclidian(timesteps):
+    """euclidian.
+    euclidian distance between 2 vectors
+
+    :param timesteps: abudance vector at each time step
+    """
+    t1, tn = timesteps[0], timesteps[-1]
+    return euclidian_(t1, tn)
 
 
 def skewness(timesteps):
@@ -118,6 +130,17 @@ def bray_curtis(timesteps):
 
 
 # Statistics computed on a single abundance vector
+def euclidian_(abundance1, abundance2):
+    """euclidian.
+    euclidian distance between 2 vectors
+
+    :param abundance1: bacterial abundance vector
+    :param abundance2: bacterial abundance vector
+    """
+    # return np.sqrt(np.sum(abundance1-abundance2)**2)
+    return np.linalg.norm(abundance1 - abundance2)
+
+
 def skewness_(abundance):
     """skewness_.
     Calculate Fisher-Pearson coefficient of
