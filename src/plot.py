@@ -56,7 +56,10 @@ def run_model(K_ac, initial_N, time_steps,
     :param time_steps: time steps to run the model
     """
     print('QS interaction matrix')
-    print(K_ac, K_ac.shape)
+    if type(K_ac) == str:
+        K_ac = matrix.pattern_K_acrix(K_ac, len(initial_N))
+    print(K_ac.shape)
+    print(K_ac)
     print('simulating...')
     results = model.simulate(K_ac,
                              initial_N,
@@ -70,19 +73,18 @@ def run_model(K_ac, initial_N, time_steps,
         return results
 
 
-def matrix_comparisons(initial_N, time_steps, params=model.params):
-    matrices = ['null', 'ident', 'star',
-                'cycle', 'barbell', 'complete']
+def matrix_comparisons(matrices, initial_N, time_steps, params=model.params):
     # Get results for each matrix
     mat_results = []
     for mat in matrices:
-        K_ac = matrix.pattern_matrix(mat, len(initial_N))
+        if type(mat) == str:
+            K_ac = matrix.pattern_matrix(mat, len(initial_N))
         results = model.simulate(K_ac, initial_N,
                                  time_steps, params=params)
         mat_results.append((results[0], results[1]))
     # plot all together
     plt.rcParams["figure.figsize"] = 16, 9
-    fig, axs = plt.subplots(2, 3,
+    fig, axs = plt.subplots(2, int(len(matrices)/2),
                             sharex=True,
                             sharey='row')
     labels = ["N{}".format(i) for i in range(1, len(initial_N)+1)]

@@ -101,19 +101,29 @@ or 3 strains $R_1S_1$, $R_2S_1$ and $R_2S_2$
 
 # Results
 
-## Comparing Different K_ac Matrices
+## Comparing Different $K_{ac}$ Matrices
 
 \vspace{0.25em}
 ![](k_ac_comparisons.png)
 
-## How K_ac Sparsity Affects Population Structure
+## How $K_{ac}$ Sparsity Affects Population Structure
 
 ## Simulating With Human Gut Microbiome Data
 
 ## Discussion
 
-### Chaining $K_ac$ has strong effects on model dynamics
+### Chaining $K_{ac}$ has strong effects on model dynamics
 - changes can occur independent of sparsity
 - decreasing sparsity  does ...
+
+## Moral of the Study
+
+\begin{center}
+\onslide<2->
+\Huge Cheating may help but cooperating is best! \\
+\vspace{0.1em}
+\onslide<3->
+\tiny (for bacteria)
+\end{center}
 
 ## Bibliography {.allowframebreaks}

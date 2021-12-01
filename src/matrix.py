@@ -86,7 +86,6 @@ def pattern_matrix(pattern, n):
     :param pattern: string specifing which matrix
     :param n: size of the matrix (always square)
     """
-
     if pattern == 'null':
         # no QS interactions
         return np.zeros((n, n))
@@ -94,6 +93,20 @@ def pattern_matrix(pattern, n):
         # Each OTU can only interact with its
         # own QS system (diagonal matrix)
         return np.diag([1]*n)
+    elif pattern == 'naive':
+        # naive coopertor from @eldar_2011
+        # make one row all 1s (all strains
+        # have that receptor)
+        base = np.zeros((n, n))
+        base[np.random.randint(0, n)] = np.ones(n)
+        return base
+    elif pattern == 'immune':
+        # immune coopertor from @eldar_2011
+        # make one col all 1s (all strains
+        # produce that signal)
+        base = np.zeros((n, n))
+        base[np.random.randint(0, n)] = np.ones(n)
+        return base.T
     elif pattern == 'barbell':
         # 2 complete subgraphs of size n/2 connected
         # by a single edge
