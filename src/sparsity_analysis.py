@@ -3,7 +3,7 @@ import pandas as pd
 import matrix
 import model
 import analysis as an
-# from tqdm import tqdm
+from tqdm import tqdm
 
 
 """
@@ -27,10 +27,10 @@ def analyze(size, num, lower, upper, sparsity, end_time):
     :param end_time: time steps to simulate
     """
     pop_dfs = []
-    for pop_size in range(2, size+1):
+    for pop_size in tqdm(range(2, size+1), desc='|N|'):
         inits = an.make_random_abundances(pop_size, num, lower, upper)
         idfs = []
-        for p_i, init in enumerate(inits):
+        for p_i, init in tqdm(enumerate(inits), desc='initial', leave=True):
             dfs = [analyze_run(init, sparsity, end_time)
                    for init in inits]
             dfs = [append_static_col(df, p_i, 'Init') for df in dfs]
