@@ -110,7 +110,9 @@ Matrix for 2 strains $R_1R_2S_1$ and $R_2S_2$ $\qquad\quad\begin{bmatrix} 1 & 0 
 
 - Implemented the ODE in python using `scipy.integrate.solve_ivp` (RK45)
 - Generated different $K_{ac}$ matrices and run simulations
+  - Specific patterns and randomly generated $K_{ac}$
 - Examine population structure and model dynamics 
+- Simulate using gut microbiome data as initial state
 
 # Results
 
