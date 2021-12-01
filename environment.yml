@@ -139,6 +139,7 @@ dependencies:
   - testpath=0.5.0=pyhd3eb1b0_0
   - tk=8.6.11=h1ccaba5_0
   - tornado=6.1=py39h27cfd23_0
+  - tqdm=4.62.3=pyhd3eb1b0_1
   - traitlets=5.1.1=pyhd3eb1b0_0
   - tzdata=2021e=hda174b7_0
   - urllib3=1.26.7=pyhd3eb1b0_0
