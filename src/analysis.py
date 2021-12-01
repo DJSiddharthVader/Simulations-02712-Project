@@ -15,17 +15,6 @@ The diversity measures are taken from @calle_2019
 """
 
 
-def compute_stats(N):
-    """compute_stats.
-
-    :param N:
-    """
-    stats = {}
-    stats["growth_rate"] = growth_rate(N.T)
-    N = np.apply_along_axis(normalize, 1, N.T).T
-    return stats
-
-
 def normalize(abundance):
     """normalize.
     Normalize the abundance vector.
@@ -36,7 +25,38 @@ def normalize(abundance):
     return [x/div for x in abundance]
 
 
+def make_random_abundances(size, num, lower, upper):
+    """make_random_abundaces.
+    Produce a random abundance vector with the
+    specified properties, used as initial
+    conditions.
+
+    :param size: size of each vector
+    :param num: number of vectors
+    :param lower: lower bound on abundance
+    :param upper: upper bound on abundance
+    """
+    return np.random.uniform(lower, upper, (num, size))
+
+
 # Statistics computed from all time steps
+def compute_stats(N):
+    """compute_stats.
+    Compute population stats for the results
+    of a simulation of the ODE model.
+
+    :param N: |strains| by |time points| matrix
+    """
+    stats = {}
+    stats["growth_rate"] = growth_rate(N.T)
+    N = np.apply_along_axis(normalize, 1, N.T)
+    stats["has_grown"] = has_grown(N)
+    stats["skew"] = skewness(N)
+    stats["shannon_index"] = shannon_index(N)
+    stats["bray_curtis"] = bray_curtis(N)
+    return stats
+
+
 def growth_rate(timesteps):
     """growth_rate.
     Growth rate of the total population size.
