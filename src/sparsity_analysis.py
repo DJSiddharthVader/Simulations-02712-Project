@@ -3,7 +3,7 @@ import pandas as pd
 import matrix
 import model
 import analysis as an
-from tqdm import tqdm
+from tqdm.notebook import tqdm
 
 
 """
@@ -13,30 +13,40 @@ by running analysis() and I will create plots with code in plot.py
 """
 
 
-def analyze(size, num, lower, upper, sparsity, end_time):
+def analyze(sizes, n, lower, upper, sparsity, end_time):
     """analyze.
     Preform the sparsity analysis using different
     random initial populations for different
-    populatin sizes between 2 and size.
+    population sizes. Takes a while to run due to
+    how many combinations are tested.
 
-    :param size: size of each population
-    :param num: number of initial populations
+    :param sizes: population sizes to simulate
+    :param n: number of initial populations
     :param lower: minimum abundance
     :param upper: maximum abundance
     :param sparsity: maximum sparsity value to try
     :param end_time: time steps to simulate
     """
     pop_dfs = []
-    for pop_size in tqdm(range(2, size+1), desc='|N|'):
-        inits = an.make_random_abundances(pop_size, num, lower, upper)
-        idfs = []
-        for p_i, init in tqdm(enumerate(inits), desc='initial', leave=True):
-            dfs = [analyze_run(init, sparsity, end_time)
-                   for init in inits]
-            dfs = [append_static_col(df, p_i, 'Init') for df in dfs]
-            idfs += [pd.concat(dfs).reset_index(drop=True)]
-        idf = pd.concat(idfs).reset_index(drop=True)
-        idf = append_static_col(idf, pop_size, 'Size')
+    for size in tqdm(sizes, desc='size'):
+        dfs, K_acs = [], list(matrix.random_matrix_generator(size, sparsity))
+        for K_ac in tqdm(K_acs, desc='sparsity', leave=False):
+            rows, inits = [], an.make_random_abundances(size, n, lower, upper)
+            for p_i, init in enumerate(tqdm(inits, desc='init', leave=False)):
+                # simulate
+                t, N, S, E, P = model.simulate(K_ac, init, end_time)
+                # calculate statistics
+                row = an.compute_stats(N)
+                row["init"] = p_i
+                rows.append(row)
+            # consolidate data for all inits all for K_ac
+            df = pd.DataFrame(rows)
+            sparsity = np.sum(K_ac)/(size*size)
+            df = append_static_col(df, sparsity, "sparsity")
+            dfs += [df]
+        # consolidate data for all K_ac's for current size
+        idf = pd.concat(dfs).reset_index(drop=True)
+        idf = append_static_col(idf, size, 'Size')
         pop_dfs += [idf]
     return pd.concat(pop_dfs)
 
@@ -52,23 +62,3 @@ def append_static_col(df, value, name):
     """
     col = pd.DataFrame({name: [value]*df.shape[0]})
     return pd.concat([df, col], axis=1)
-
-
-def analyze_run(init, sparsity, end_time):
-    """analyze_run.
-    Generate simulation data to analyze how K_ac
-    sparsity affects model dynamics.
-
-    :param init:  inital abudance vector
-    :param sparsity: maximum sparsity to test
-    :param end_time: time steps to simulate
-    """
-    rows, n = [], len(init)
-    for K_ac in matrix.random_matrix_generator(n, sparsity):
-        # simulate model with given params
-        t, N, S, E, P = model.simulate(K_ac, init, end_time)
-        # Calculate statistics
-        row = an.compute_stats(N)
-        row["sparsity"] = np.sum(K_ac)/(n*n)
-        rows.append(row)
-    return pd.DataFrame(rows)
