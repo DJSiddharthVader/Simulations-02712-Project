@@ -23,16 +23,19 @@
 
 - [ ] Use model to answer Questions
   - [ ] What happens as sparsity decreases?
-  - [ ] How do specific "patterned matrices affect the population?
+  - [ ] How do specific "patterned" matrices affect the population?
+    - [x] population trajectories for different matrices
+    - [ ] model statistics for different matrices
   - [ ] What happens using real data as initial conditions?
+  - [ ] How does the model work with a biologically informed K_ac
 
 - [ ] Writing the background, motivation and methods
   - [x] what are QS systems?
   - [x] what makes QS systems incompatible and how does this lead to "cheating"?
   - [ ] are there medical/research/environmental reasons to care about this?
   - [x] steal the cool diagram from @eldar_2011 (Fig 2?)
-  - [ ] basics of the ODE model
-  - [ ] one slide on Runge-Katta methods? (what scipy uses)
+  - [x] basics of the ODE model
+    - [ ] ~~one slide on Runge-Katta methods? (what scipy uses)~~
 
 - [ ] Matrix curation/generation code
   - [x] develop a "null" model to compare against
