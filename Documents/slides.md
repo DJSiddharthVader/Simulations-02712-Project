@@ -16,7 +16,7 @@ title: How Quorum Sensing Interactions Affect Population Structure
 subtitle: 02-712 Final Project
 author: Sid Reed, Neel Mehtani, Sarah Wenger, Deepika Yeramosu, Evan Trop
 date: \today
-institute: Computational Biology Department, Carnegie Mellon University
+institute: Carnegie Mellon University
 ---
 
 # Background
@@ -71,18 +71,26 @@ institute: Computational Biology Department, Carnegie Mellon University
 
 ## Basic ODE Model
 
-![](eldar_title.png)
-\vspace{0.25em}
+\centering
+![](eldar_title.png){width=300}
 
-- Equations taken from @eldar_2011
-- Deterministic ODE model of bacteria
-- We focused on QS interactions over Evolution
+\onslide<2->
+### Model Equations
+\begin{align*}
+    \frac{dn_i}{dt} &= n_i(\frac{P_d}{P_d+1}(1-rf(R^{active}_i))-n_{tot}-\gamma_n)\\
+    \frac{dS_i}{dt} &= \beta_S(n_i-S_i)\\
+    \frac{dE}{dt} &= -\beta_EE+\sum_i f(R^{active}_i)n_i\\
+    \frac{dP_d}{dt} &= J_{P_d}+V_{max}E-\beta_{P_d}(\frac{P_d}{P_d+1})n_{tot}
+\end{align*}
 
 ## Signal-Receptor Activation Matrix $K_{ac}$
 
-- Represents all receptors-signal pairs ($R_iS_i$) present in at least 1 OTU in the population
-- Different sets of receptor-signal combinations can produce the same $K_{ac}$
-- $K_{ac}$ is of dimension $|R|\times|S|=|N|\times|N|$
+- The interaction term is defined as $R^{active} = \frac{K_{ac}\vec{S}}{K_{RS}+K_{ac}\vec{S}}$
+  - assumes Michalis-Menten dynamics of signal-receptor binding ($K_{RS}$ is a constant)
+
+- $K_{ac}$ represents all receptors-signal pairs ($R_iS_i$) produced in each strain
+
+- $K_{ac}$ is of dimension $|R|\times|S|=|n|\times|n|$
 
 ---
 
@@ -97,7 +105,12 @@ Matrix for 2 strains $R_1S_1$ and $R_0S_0$ \qquad\qquad$\begin{bmatrix} 1 & 0 \\
 \onslide<3->
 ### Custom Matrix
 Matrix for 2 strains $R_1R_2S_1$ and $R_2S_2$ $\qquad\quad\begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix}$\
-or 3 strains $R_1S_1$, $R_2S_1$ and $R_2S_2$
+
+## Our Work
+
+- Implemented the ODE in python using `scipy.integrate.solve_ivp` (RK45)
+- Generated different $K_{ac}$ matrices and run simulations
+- Examine population structure and model dynamics 
 
 # Results
 
@@ -106,23 +119,21 @@ or 3 strains $R_1S_1$, $R_2S_1$ and $R_2S_2$
 \vspace{0.25em}
 ![](k_ac_comparisons.png)
 
+---
+
 ## How $K_{ac}$ Sparsity Affects Population Structure
 
 ## Simulating With Human Gut Microbiome Data
 
 ## Discussion
 
-### Chaining $K_{ac}$ has strong effects on model dynamics
-- changes can occur independent of sparsity
-- decreasing sparsity  does ...
-
 ## Moral of the Study
 
 \begin{center}
-\onslide<2->
-\Huge Cheating works...\onslide<3->\tiny(for bacteria)\\
-\onslide<4->
-\Huge but cooperating is better!\\
+\onslide<2->{\Huge Cheating works...}\\
+\vspace{0.1em}
+\onslide<3->{\tiny(for bacteria)}\\
+\onslide<4->{\Huge but cooperating is better!}\\
 \end{center}
 
 ## Bibliography {.allowframebreaks}
