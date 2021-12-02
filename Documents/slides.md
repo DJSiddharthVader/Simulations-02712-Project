@@ -122,7 +122,16 @@ Matrix for 2 strains $R_1R_2S_1$ and $R_2S_2$ $\qquad\quad\begin{bmatrix} 1 & 0 
 \vspace{0.25em}
 ![](k_ac_comparisons.png)
 
----
+## How Different $K_{ac}$ affect model dynamics
+
+:::: {.columns}
+::: {.column width="55%"}
+![](fixation_time_comparison.png){width=250px}
+:::
+::: {.column width="50%"}
+![](shannon_index_comparison.png){width=250px}
+:::
+::::
 
 ## How $K_{ac}$ Sparsity Affects Population Structure
 
