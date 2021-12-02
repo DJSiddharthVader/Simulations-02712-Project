@@ -99,7 +99,7 @@ Matrix for 2 strains $R_1S_1$ and $R_0S_0$ \qquad\qquad$\begin{bmatrix} 1 & 0 \\
 
 \onslide<3->
 ### Custom Matrix
-Matrix for 2 strains $R_1R_2S_1$ and $R_2S_2$ $\qquad\quad\begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix}$\
+Matrix for 2 strains $R_1S_2S_1$ and $R_2S_2$ $\qquad\quad\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$\
 
 ## Our Work
 
