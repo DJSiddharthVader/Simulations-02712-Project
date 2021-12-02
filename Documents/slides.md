@@ -56,16 +56,11 @@ institute: Carnegie Mellon University
 
 ## Who Cares?
 
-- check the discussion from @eldar_2011 for references
-
-\onslide<1->
-### Maintaining Freeloaders as a Diversity Reservoir
-
-\onslide<2->
-### Kin Recognition for Strains
-
-\onslide<3->
-### Designing Cheaters to Disrupt Pathogen Growth
+- QS pattern can be shaped by evolution, interesting case study
+- Divegent QS systems can help maintain kin diversity
+- Analysis of QS systems can help inform strategies for resisting pathogenesis
+  - interfere with mircobiome colonization
+  - interfere with biofilm formation and competitions
 
 # Methods
 
@@ -126,18 +121,23 @@ Matrix for 2 strains $R_1R_2S_1$ and $R_2S_2$ $\qquad\quad\begin{bmatrix} 1 & 0 
 
 :::: {.columns}
 ::: {.column width="55%"}
-![](fixation_time_comparison.png){width=250px}
+![](fixation_time_comparison.png)
 :::
-::: {.column width="50%"}
-![](shannon_index_comparison.png){width=250px}
+::: {.column width="55%"}
+![](shannon_index_comparison.png)
 :::
 ::::
 
 ## How $K_{ac}$ Sparsity Affects Population Structure
 
-## Simulating With Human Gut Microbiome Data
+![](sparsity_analysis.png){width=425}
 
 ## Discussion
+
+- Patterns and sparsity can have large effects on population trajectories
+- Not a linear relationship between sparsity and total growth rate
+  - cheating doesnt always benefit everyone
+- Different $K_{ac}$ have strong effects on population diversity
 
 ## Moral of the Study
 
