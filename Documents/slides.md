@@ -106,6 +106,15 @@ or 3 strains $R_1S_1$, $R_2S_1$ and $R_2S_2$
 \vspace{0.25em}
 ![](k_ac_comparisons.png)
 
+---
+
+- Analyzing population metrics across different interaction matrices
+
+\vspace{0.25em}
+![](fixation_time_comparison.png){width=250px}
+\hspace{0.2em}
+![](shannon_index_comparison.png){width=250px}
+
 ## How $K_{ac}$ Sparsity Affects Population Structure
 
 ## Simulating With Human Gut Microbiome Data
