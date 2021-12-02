@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 from scipy.stats import skew
 
 
@@ -13,6 +14,19 @@ the abundance vector at each time step of the model.
 
 The diversity measures are taken from @calle_2019
 """
+
+
+def append_static_col(df, value, name):
+    """append_static_col.
+    Append a column with all with the
+    same value to a data frame
+
+    :param df: dataframe
+    :param value: column value
+    :param name: column name
+    """
+    col = pd.DataFrame({name: [value]*df.shape[0]})
+    return pd.concat([df, col], axis=1)
 
 
 def normalize(abundance):

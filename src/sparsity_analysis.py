@@ -9,7 +9,7 @@ from tqdm.notebook import tqdm
 """
 Code to examine how sparsity of the K_ac matrix affects model
 dynamics and statistics. Will produce a dataframe of statistics
-by running analysis() and I will create plots with code in plot.py
+by running analyze() and create plots in the notebook.
 """
 
 
@@ -44,23 +44,10 @@ def analyze(sizes, n, lower, upper, get_sparsity, end_time):
             # consolidate data for all inits all for K_ac
             df = pd.DataFrame(rows)
             sparsity = np.sum(K_ac)/(size*size)
-            df = append_static_col(df, sparsity, "sparsity")
+            df = an.append_static_col(df, sparsity, "sparsity")
             dfs += [df]
         # consolidate data for all K_ac's for current size
         idf = pd.concat(dfs).reset_index(drop=True)
-        idf = append_static_col(idf, size, 'Size')
+        idf = an.append_static_col(idf, size, 'Size')
         pop_dfs += [idf]
     return pd.concat(pop_dfs)
-
-
-def append_static_col(df, value, name):
-    """append_static_col.
-    Append a column with all with the
-    same value to a data frame
-
-    :param df: dataframe
-    :param value: column value
-    :param name: column name
-    """
-    col = pd.DataFrame({name: [value]*df.shape[0]})
-    return pd.concat([df, col], axis=1)
