@@ -23,9 +23,9 @@
 
 - [ ] Use model to answer Questions
   - [ ] What happens as sparsity decreases?
-  - [ ] How do specific "patterned" matrices affect the population?
+  - [x] How do specific "patterned" matrices affect the population?
     - [x] population trajectories for different matrices
-    - [ ] model statistics for different matrices
+    - [x] model statistics for different matrices
   - [ ] What happens using real data as initial conditions?
   - [ ] How does the model work with a biologically informed K_ac
 
@@ -36,6 +36,8 @@
   - [x] steal the cool diagram from @eldar_2011 (Fig 2?)
   - [x] basics of the ODE model
     - [ ] ~~one slide on Runge-Katta methods? (what scipy uses)~~
+  - [x] explaining K_ac matrices
+  - [x] what we did
 
 - [ ] Matrix curation/generation code
   - [x] develop a "null" model to compare against
@@ -62,9 +64,12 @@
 
 Requires:
   - `GNU make`
-  - `pandoc`
   - `python >= 3.7`
   - Use conda and the provided `environment.yml` for dependencies
+    - `numpy`
+    - `scipy`
+    - `seaborn`
+    - `pandoc` (for making slides/report)
 
 ```bash
 # create and activate the conda environment

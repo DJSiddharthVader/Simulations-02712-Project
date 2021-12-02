@@ -60,8 +60,10 @@ def random_matrix_generator(n, s, m=-1):
     non_zero_entries = [indices[x] for x in non_zero_entries]
     # make the random cells 1
     for i, j in non_zero_entries:
-        matrix[i][j] = 1
-        yield matrix
+        tmp = matrix.copy()
+        tmp[i][j] = 1
+        yield tmp
+        matrix = tmp
 
 
 def random_matrix(n, s, m=-1):
