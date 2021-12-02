@@ -13,7 +13,7 @@ by running analysis() and I will create plots with code in plot.py
 """
 
 
-def analyze(sizes, n, lower, upper, sparsity, end_time):
+def analyze(sizes, n, lower, upper, get_sparsity, end_time):
     """analyze.
     Preform the sparsity analysis using different
     random initial populations for different
@@ -24,12 +24,14 @@ def analyze(sizes, n, lower, upper, sparsity, end_time):
     :param n: number of initial populations
     :param lower: minimum abundance
     :param upper: maximum abundance
-    :param sparsity: maximum sparsity value to try
+    :param sparsity: fnc to calculate max sparsity
+                     to test given n
     :param end_time: time steps to simulate
     """
     pop_dfs = []
     for size in tqdm(sizes, desc='size'):
-        dfs, K_acs = [], list(matrix.random_matrix_generator(size, sparsity))
+        max_s = min(1, get_sparsity(size))
+        dfs, K_acs = [], list(matrix.random_matrix_generator(size, max_s))
         for K_ac in tqdm(K_acs, desc='sparsity', leave=False):
             rows, inits = [], an.make_random_abundances(size, n, lower, upper)
             for p_i, init in enumerate(tqdm(inits, desc='init', leave=False)):
