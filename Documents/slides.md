@@ -134,10 +134,21 @@ Matrix for 2 strains $R_1S_2S_1$ and $R_2S_2$ $\qquad\quad\begin{bmatrix} 1 & 1 
 
 ## Discussion
 
+### Findings
+
 - Patterns and sparsity can have large effects on population trajectories
 - Not a linear relationship between sparsity and total growth rate
-  - cheating doesnt always benefit everyone
+  - cheating does not always benefit everyone
 - Different $K_{ac}$ have strong effects on population diversity
+
+\onslide<5->
+### Extensions
+
+- Generalize $K_{ac}$ 
+- Simulating with real microbiome data
+- Using biologically informed $K_{ac}$ (@hiller_2020)
+- Fit this framework onto other biological systems
+  - modelling fish Tinder
 
 ## Moral of the Study
 

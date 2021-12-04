@@ -7,7 +7,7 @@ FIG_DIR=$(DOC_DIR)/figures
 RESULTS_DIR=./Results
 RESOURCES=$(RESULTS_DIR):$(FIG_DIR)
 # Flags
-PFLAGS=-s --from markdown+citations -citeproc --bibliography $(BIBLIO) --resource-path $(RESOURCES)
+PFLAGS=-s --from markdown+citations --citeproc --bibliography $(BIBLIO) --resource-path $(RESOURCES)
 
 publish: documents
 	@git add $(OUT_DIR)/*.pdf
