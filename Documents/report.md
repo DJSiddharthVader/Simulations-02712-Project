@@ -35,8 +35,6 @@ institute:
 abstract: "example abstract"
 ---
 
-*[OTU]: Operational Taxonomic Unit
-
 # Background
 
 # Methods

@@ -1,9 +1,30 @@
 How Quorum Sensing Interactions Affect Population Structure
 ===========================================================
 
-## 02-712 Final Project
+CMU 02-712 Final Project
+
+__Authors:__ Sid Reed, Evan Trop, Neel Mehtani, Deepika Yeramosu, Sarah Wenger
+
+## Repository Structure
 
 [final report](./Published/report.pdf)
+
+The repository is structured as followed
+
+
+| Directory/File    | Description                                                   |
+| ----------------- | ------------------------------------------------------------- |
+| `Data/`           | generated simulation data or downloaded data (microbiome)     |
+| `Documents/`      | documents for this project (proposal, slides, report) and the |
+|                   | supplementary files (template, bibliography, figures)         |
+| `Notebooks/`      | jupyter notebooks with code for producing figures             |
+| `Papers/`         | cited papers                                                  |
+| `Published/`      | compiled documents (pdfs)                                     |
+| `src/`            | source code                                                   |
+| `Makefile`        | makefile to compile documents                                 |
+| `README.md`       | this file                                                     |
+| `environment.yml` | anaconda environment file for specifying dependencies         |
+
 
 ## Running the Code
 
@@ -29,6 +50,8 @@ $ conda env create -f environment.yml  # create conda environment
 $ conda activate proj_02712            # activate env
 $ jupyter-lab Notebooks/               # run jupyter-lab server 
 ```
+
+It may take several hours to run the simulations depending on the simulation parameters but pre-computed data for each analysis is provided in `./Data/`.
 
 ### Compiling Documents
 
