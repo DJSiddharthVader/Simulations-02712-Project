@@ -15,8 +15,7 @@ The repository is structured as followed
 | Directory/File    | Description                                                   |
 | ----------------- | ------------------------------------------------------------- |
 | `Data/`           | generated simulation data or downloaded data (microbiome)     |
-| `Documents/`      | documents for this project (proposal, slides, report) and the |
-|                   | supplementary files (template, bibliography, figures)         |
+| `Documents/`      | documents for this project (proposal, slides, report) and the supplementary files (template, bibliography, figures)                                             |
 | `Notebooks/`      | jupyter notebooks with code for producing figures             |
 | `Papers/`         | cited papers                                                  |
 | `Published/`      | compiled documents (pdfs)                                     |
