@@ -14,7 +14,7 @@ by running analyze() and create plots in the notebook.
 
 def analyze(size, num, lower, upper, patterns, end_time):
     dfs, inits = [], an.make_random_abundances(size, num, lower, upper)
-    for pattern in tqdm(patterns, desc='pattern', leave=False):
+    for pattern in tqdm(patterns, desc='pattern', leave=True):
         rows, K_ac = [], matrix.pattern_matrix(pattern, size)
         for p_i, init in enumerate(tqdm(inits, desc='init', leave=False)):
             # simulate
