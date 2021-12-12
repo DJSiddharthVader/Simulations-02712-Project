@@ -20,13 +20,13 @@ author:
   - name: Siddharth Reed
     affiliation: 1
     email: slreed@andrew.cmu.edu
-  - name: Evan
+  - name: Evan Trop
     affiliation: 1
-  - name: Neel
+  - name: Neel Mehtani
     affiliation: 1
-  - name: Deepika
+  - name: Deepika Yeramos
     affiliation: 1
-  - name: Sarah
+  - name: Sarah Wenger
     affiliation: 1
 institute:
   - num: 1
@@ -111,7 +111,7 @@ Text about sparsity
 ## Simulations with OTU data
 As a way to explore our model with real data, we used data and metadata from the Inflammatory Bowel Multiomics Database to seed our simulator. The specific data we used contained taxonomic profiles for participants who were diagnosed into three classes, non-irritable bowel disease (non-IBD), ulcerative colitis(UC), and crohn's disease(CD).
 
-We were interested in observing if different biologically relevant interaction matrix patterns (K_ac) would play a role in differentiating the different disease states. For each set of participants with the same diagnosis, we created a strain abundance list which consisted of every bacterial strain and its corresponding average abundance derived from the taxonomic profiles of the participants.
+We were interested in observing if different biologically relevant interaction matrix patterns ($K_ac$) would play a role in differentiating the different disease states. For each set of participants with the same diagnosis, we created a strain abundance list which consisted of every bacterial strain and its corresponding average abundance derived from the taxonomic profiles of the participants.
 Simulations were then performed for each interaction matrix pattern with the initial cell density parameter set as the normalized strain abundance list for each diagnosis. Although there is a loss of information pertaining to the growth dynamics of each strain over time, graphs corresponding to the total cell densities over time were generated for each matrix pattern.
 
 The results below show that for most matrix patterns, given enough time, total cell densities are very similar across all diagnosis types. We observe differentiation between non-IBD and disease states for the case where all strains have the same receptor and are considered naive cooperators. Differentiation in the trajectory of total cell density is also observed for the identity matrix pattern which signifies that each bacteria has an independent qs system. An interesting result is that the complete matrix pattern, where every strain’s receptor binds every other strain’s signal, shows different trajectory between CD and the UC/nonIBD cases.
@@ -133,3 +133,4 @@ It is hard to determine whether the specific type of interaction matrix from our
 # Contributions
 
 # Bibliography
+
