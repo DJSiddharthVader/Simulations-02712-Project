@@ -62,6 +62,7 @@ def compute_stats(N):
     :param N: |strains| by |time points| matrix
     """
     stats = {}
+    stats["total"] = total(N.T)
     stats["growth_rate"] = growth_rate(N.T)
     stats["has_grown"] = has_grown(N.T)
     # stats["skew"] = skewness(N.T)
@@ -71,6 +72,15 @@ def compute_stats(N):
     stats["shannon_index"] = shannon_index(N.T)
     stats["bray_curtis"] = bray_curtis(N.T)
     return stats
+
+
+def total(timesteps):
+    """total.
+    Total population at the final time step
+
+    :param timesteps: abundance vector at each time step
+    """
+    return sum(timesteps[-1])
 
 
 def growth_rate(timesteps):

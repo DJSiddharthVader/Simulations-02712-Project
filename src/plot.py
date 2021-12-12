@@ -43,7 +43,9 @@ def plot_model(results):
     plt.tick_params(labelcolor='none', which='both',
                     top=False, bottom=False, left=False, right=False)
     plt.xlabel("Time")
+    plt.ylabel("Abundance")
     plt.show()
+
 
 def plot_model_evan(results):
     t, N, S, E, P = results
@@ -55,12 +57,10 @@ def plot_model_evan(results):
     labels = ["N{}".format(i) for i in range(1, len(N)+1)]
     axN.plot(t, N.T, label=labels)
     axN.set_title("Strains")
-    #axN.legend()
     # Plot Signals
     labels = ["S{}".format(i) for i in range(1, len(S)+1)]
     axS.plot(t, S.T, label=labels)
     axS.set_title("Signals")
-    #axS.legend()
     # Plot Exo-Enzyme
     axE.plot(t, E)
     axE.set_title("Exo-Enzyme")
@@ -75,9 +75,9 @@ def plot_model_evan(results):
     plt.xlabel("Time")
     plt.show()
 
-    
+
 def run_model_evan(K_ac, initial_N, time_steps,
-              params=model.params, show=True):
+                   params=model.params, show=True):
     """run_model.
     Wrapper for running the model and plotting results
 
@@ -102,10 +102,7 @@ def run_model_evan(K_ac, initial_N, time_steps,
     else:
         return results
 
-    
-    
-    
-    
+
 def run_model(K_ac, initial_N, time_steps,
               params=model.params, show=True):
     """run_model.
@@ -128,7 +125,7 @@ def run_model(K_ac, initial_N, time_steps,
     print('finished simulating!')
     if show:
         print('plotting...')
-        plot_model_evan(results)
+        plot_model(results)
     else:
         return results
 
@@ -159,6 +156,7 @@ def matrix_comparisons(matrices, initial_N, time_steps, params=model.params):
     plt.tick_params(labelcolor='none', which='both',
                     top=False, bottom=False, left=False, right=False)
     plt.xlabel("Time")
+    plt.ylabel("Abundance")
     fig.tight_layout()
     # fig.suptitle("Comparison of Different K_ac Matrices")
     fig.suptitle('Initial: ({})'.format(', '.join(str(x) for x in initial_N)))
