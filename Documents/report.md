@@ -1,11 +1,12 @@
 ---
 documentclass: article
-classoption: twocolumn
 geometry: margin=1in
 fontsize: 12pt
 nocite: '@*'
 linkcolor: blue
 header-includes:
+  - \usepackage{float}
+  - \usepackage{placeins}
   - \usepackage{setspace}
   - \usepackage{amsfonts}
   - \usepackage{tikz-network}
@@ -17,21 +18,19 @@ subtitle: "02-712 Final Project"
 date: \today
 author:
   - name: Siddharth Reed
-    affiliation: 1,2
-    email: slreed@andrew.cmu.edu
-  - name: Neel
     affiliation: 1
+    email: slreed@andrew.cmu.edu
   - name: Evan
     affiliation: 1
-  - name: Sarah
+  - name: Neel
     affiliation: 1
   - name: Deepika
+    affiliation: 1
+  - name: Sarah
     affiliation: 1
 institute:
   - num: 1
     name: Computational Biology Department, Carnegie Mellon University
-  - num: 2
-    name: Department of Being Sick, Cool University
 abstract: "example abstract"
 ---
 
@@ -61,9 +60,42 @@ abstract: "example abstract"
 
 ## Comparing QS interaction matrices
 
-### How Sparsity affects model dynamics
+\FloatBarrier
+\begin{figure*}[h]
+\centering
+\includegraphics[width=\linewidth]{Documents/figures/k_ac_comparisons.png}
+\caption{}
+\label{comparison}
+\end{figure*}
+\FloatBarrier
 
-### Examining well-known adjacency matrices
+Text about matrices
+
+## Examining specific adjacency matrices
+
+\FloatBarrier
+\begin{figure*}[h]
+\centering
+\includegraphics[width=\linewidth]{Documents/figures/pattern_analysis.png}
+\label{patterns}
+\caption{test}
+\end{figure*}
+\FloatBarrier
+
+Text about patterns
+
+## How sparsity affects model dynamics
+
+\FloatBarrier
+\begin{figure*}[h]
+\centering
+\includegraphics[width=\linewidth]{Documents/figures/sparsity_analysis.png}
+\caption{test}
+\label{sparsity}
+\end{figure*}
+\FloatBarrier
+
+Text about sparsity
 
 ## Simulations with OTU data
 The data we use is an OTU table $O_I$, an $m\times n$ matrix representing the abundance of $m$ OTUs across $n$ samples.
@@ -78,7 +110,14 @@ Given the tables $O_I, O_T$ for each sample we can calculate
 
 and we examine how these statistics vary when using different $K_a$ matrices and the same $O_I$.
 
-## Simulation with an empirically derived QS interaction matrix
+\FloatBarrier
+\begin{figure*}[h]
+\centering
+\includegraphics[width=\linewidth]{Documents/figures/microbiome_analysis.png}
+\caption{test}
+\label{microbiome}
+\end{figure*}
+\FloatBarrier
 
 # Discussion
 

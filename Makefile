@@ -4,8 +4,7 @@ OUT_DIR=./Published
 BIBLIO=$(DOC_DIR)/citations.bib
 TEMPLATE=$(DOC_DIR)/template.tex
 FIG_DIR=$(DOC_DIR)/figures
-RESULTS_DIR=./Results
-RESOURCES=$(RESULTS_DIR):$(FIG_DIR)
+RESOURCES=$(FIG_DIR)
 # Flags
 PFLAGS=-s --from markdown+citations+pipe_tables --citeproc --bibliography $(BIBLIO) --resource-path $(RESOURCES)
 
