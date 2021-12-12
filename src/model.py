@@ -73,7 +73,7 @@ def iterator(t, state, r, gamma_n, beta_S, beta_E, j_P_d,
     return np.concatenate([dndt, dSdt, dEdt, dPdt])
 
 
-def simulate(K_ac, N, end, params=params):
+def simulate(K_ac, N, end, params=params,mb=False):
     """simulate.
     Runs a simulation of the model with the given conditions
 
@@ -84,6 +84,10 @@ def simulate(K_ac, N, end, params=params):
                    need to be changed as we only ever use
                    the parameters from @eldar_2011
     """
+    
+    if mb:
+        params["j_P_d"] = .9
+        
     if len(N) != len(K_ac):
         raise ValueError('must have as many initial values as cols in matrix')
     init = make_init(N)
