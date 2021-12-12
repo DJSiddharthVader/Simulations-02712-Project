@@ -38,11 +38,20 @@ abstract: "example abstract"
 
 # Background
 
+Quorum sensing (QS) involves the ability of bacteria to change their population behavior. QS systems consist of a signal molecule that is constitutively expressed and a complementary receptor. When the population density of the bacteria reaches a certain threshold, the increased concentration signal bound receptor triggers expression of a public good such as a biofilm, surfactin, or enzyme to break down a complex nutrient.
+
+These QS systems resemble some form of kin recognition as only bacteria that produce the unique signal - receptor pair take part in the production of the public good. However, bacteria that do not produce the signal - receptor pair, also called “cheaters”, can take advantage of the public good without incurring the expense of signal or public good production. Cheaters help maintain diversity in QS signaling systems as diverged incompatible QS systems are still maintained at the population level through the indiscriminate public good [@pollak_2015].
+
+These QS interactions naturally give rise to a matrix where row r_i represents straini’s receptor and column si represents straini’s signal. Matrix values are one if receptor - signal binding is possible and zero otherwise. Our project aims to understand how QS interactions amongst different bacterial strains affect the population structure. Specifically, we are interested in answering how different biologically relevant matrix patterns and matrix sparsity affect population statistics such as total population growth rate, population diversity, time until fixation. Developing an understanding of the significance of these QS interactions might allow one to manipulate microbial environments. This could prove to be a useful tool in medical applications such as gastrointestinal diseases or in improving environmental states in wastewater treatment facilities.
+
+Previous studies of QS systems have explored how and why evolutionary divergence of QS pathways occurs as well as how population diversity is maintained in the presence of obligate cheaters. These studies do not  investigate how specific patterns and level of interactions between QS systems affect population structure.
+
+
 # Methods
 
 ## Basic QS Interaction Model
 
-### Assumptions 
+### Assumptions
 - Very basic assumption is that QS directly controls the levels the public good production
 - Signal production is constitutive and quorum response is density dependent function of signal-bound receptor
 - QS system is composed of 3 genes encoding signaling molecule ($S$), receptor molecule ($R$), and public good product
@@ -100,17 +109,13 @@ Text about patterns
 Text about sparsity
 
 ## Simulations with OTU data
-The data we use is an OTU table $O_I$, an $m\times n$ matrix representing the abundance of $m$ OTUs across $n$ samples.
-For each sample we use the abundance vector as our initial state and run the simulation with a given set of parameters.
-So after all simulations we get an OTU table $O_T$ representing the terminal state of the model (abundance vector) for each initial state.
-Given the tables $O_I, O_T$ for each sample we can calculate 
+As a way to explore our model with real data, we used data and metadata from the Inflammatory Bowel Multiomics Database to seed our simulator. The specific data we used contained taxonomic profiles for participants who were diagnosed into three classes, non-irritable bowel disease (non-IBD), ulcerative colitis(UC), and crohn's disease(CD).
 
-- difference in $\alpha$-diversity (richness and Shannon Index)
-- $\beta$-diversity (Bray-Curtis distance)
-- difference in skewness (Fisher's Coefficient of skewness)
-- total population growth rate 
+We were interested in observing if different biologically relevant interaction matrix patterns (K_ac) would play a role in differentiating the different disease states. For each set of participants with the same diagnosis, we created a strain abundance list which consisted of every bacterial strain and its corresponding average abundance derived from the taxonomic profiles of the participants.
+Simulations were then performed for each interaction matrix pattern with the initial cell density parameter set as the normalized strain abundance list for each diagnosis. Although there is a loss of information pertaining to the growth dynamics of each strain over time, graphs corresponding to the total cell densities over time were generated for each matrix pattern.
 
-and we examine how these statistics vary when using different $K_a$ matrices and the same $O_I$.
+The results below show that for most matrix patterns, given enough time, total cell densities are very similar across all diagnosis types. We observe differentiation between non-IBD and disease states for the case where all strains have the same receptor and are considered naive cooperators. Differentiation in the trajectory of total cell density is also observed for the identity matrix pattern which signifies that each bacteria has an independent qs system. An interesting result is that the complete matrix pattern, where every strain’s receptor binds every other strain’s signal, shows different trajectory between CD and the UC/nonIBD cases.
+
 
 \FloatBarrier
 \begin{figure*}[h]
@@ -122,5 +127,9 @@ and we examine how these statistics vary when using different $K_a$ matrices and
 \FloatBarrier
 
 # Discussion
+
+It is hard to determine whether the specific type of interaction matrix from our set of biologically relevant matrices can significantly differentiate the trajectory of total cell densities between the microbiome environments of IBD vs non-IBD. It would be interesting to use empirical interaction matrices for simulations as it could provide more insight into if these interaction matrices are important in determining disease states.
+
+# Contributions
 
 # Bibliography

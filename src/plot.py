@@ -47,12 +47,12 @@ def plot_model(results):
     plt.show()
 
 
-def plot_model_evan(results):
+def plot_model_mb(results, title):
     t, N, S, E, P = results
     # Set up
     fig, ax = plt.subplots(2, 2, sharex=True)
     axN, axS, axE, axP = ax[0][0], ax[0][1], ax[1][0], ax[1][1]
-    fig.suptitle("Model Simulation")
+    fig.suptitle(title)
     # Plot Strains
     labels = ["N{}".format(i) for i in range(1, len(N)+1)]
     axN.plot(t, N.T, label=labels)
@@ -76,8 +76,8 @@ def plot_model_evan(results):
     plt.show()
 
 
-def run_model_evan(K_ac, initial_N, time_steps,
-                   params=model.params, show=True):
+def run_model_mb(K_ac, initial_N, time_steps, title,
+                 params=model.params, show=True):
     """run_model.
     Wrapper for running the model and plotting results
 
@@ -94,11 +94,12 @@ def run_model_evan(K_ac, initial_N, time_steps,
     results = model.simulate(K_ac,
                              initial_N,
                              time_steps,
-                             params)
+                             params,
+                             mb=True)
     print('finished simulating!')
     if show:
         print('plotting...')
-        plot_model_evan(results)
+        plot_model_mb(results, title)
     else:
         return results
 
