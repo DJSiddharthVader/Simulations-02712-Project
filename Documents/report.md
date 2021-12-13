@@ -94,7 +94,7 @@ $K_{ac}$ & varies & receptor-signal activation matrix\\
 \end{table}
 \FloatBarrier
 
-Using this basic model we examined how using different $K_{ac}$ matrices and using microbiome data to specify initial conditions would change population trajectories and the final population
+Using this basic model we examined how using different $K_{ac}$ matrices and using microbiome data to specify initial conditions would change population trajectories and the final population diversity.
 
 ## Model Statistics
 
@@ -104,11 +104,11 @@ Note that $t_0$ is the initial time step and $t_n$ is the final time step.
 | Statistic | Description |
 |:----------|:------------|
 | total     | The total abundance of all strains at $t_n$ |
-| growth_rate | The total groth rate of all strains |
+| growth_rate | The total growth rate of all strains |
 | has_grown | The number of strains with a larger abundance at $t_n$ than at $t_0$ |
 | euclidean | The euclidean distance between abundance vectors at $t_n$ and $t_0$ |
-| shannon index | The absolutve value of the difference in Shannon Entropy between abundance vectors at $t_n$ and $t_0$ ($\alpha$-diversity metric) |
-| bray_curtix | The Bray-Curtis distance between abundance vectors at $t_n$ and $t_0$ ($\beta$-diversity metric) |
+| shannon index | The absolute value of the difference in Shannon Entropy between abundance vectors at $t_n$ and $t_0$ ($\alpha$-diversity metric) |
+| bray_curtis | The Bray-Curtis distance between abundance vectors at $t_n$ and $t_0$ ($\beta$-diversity metric) |
 
 # Results
 
@@ -118,8 +118,8 @@ Figure \ref{comparison} illustrates the growth rates of different bacteria strai
 We see that in most cases, a larger initial abundance is associated with a larger growth rate.
 This is most apparent in the cycle and complete matrix patterns. It is also evident that regardless of initial abundance, different interaction matrices largely affect population structures.
 
-It is interesting to note between the initial and final timesteps we can get different relative abundances and largely different trajectories depending on the matrix specified.
-We still see "cheating" behaviours specified by @eldar_2011 using the `ident` matrix as even though the strains start at quite different abundances the least abundant strains (6 times smaller) still end up at similar final abundances to the most abundant initial strain.
+It is interesting to note that between the initial and final timesteps we can get different relative abundances and largely different trajectories depending on the matrix specified.
+We still see "cheating" behaviours specified by @eldar_2011 using the `ident` matrix. Even though the strains start at quite different abundances the least abundant strains (6 times smaller) still end up at similar final abundances to the most abundant initial strain.
 This is because the most abundant strain reaches quorum quickly, produces the public good and allows all other strains to benefit and grow without cost i.e. cheat.
 
 \FloatBarrier
@@ -135,9 +135,9 @@ This is because the most abundant strain reaches quorum quickly, produces the pu
 
 Figure \ref{patterns} shows what proportion of simulations had statistics below that value for the statistic.
 While there is significant diversity between matrices of the different statistics, it seems that across all statistics the complete matrix (all entries 1) appears the most different and has the largest variance (curves that are not steep).
-This is especially interesting as even though all strain contribute to the public good when any of them reach quorum we still get a wide range of values in both the total population size and the euclidean distance.
-In contrast for the identity matrix we see almost no diversity among the random initial conditions.
-So though every strain "cheats" of of all strains at quorum, this appears to lead to very little variance in both the growth rate of the entire population and the difference between the initial and final populations.
+This is especially interesting as even though all strains contribute to the public good when any of them reach quorum we still get a wide range of values in both the total population size and the euclidean distance.
+In contrast, for the identity matrix we see almost no diversity among the random initial conditions.
+So even though every strain "cheats" off of all strains at quorum, this appears to lead to very little variance in both the growth rate of the entire population and the difference between the initial and final populations.
 
 \FloatBarrier
 \begin{figure*}[h]
@@ -209,7 +209,7 @@ It is clear that differences in QS interactions related to producing a public go
 Further examinations of more biologically relevant scenarios may yield more interesting results, especially examining other sets of parameters and interactions.
 
 It is hard to determine whether the specific type of interaction matrix from our set of biologically relevant matrices can significantly differentiate the trajectory of total cell densities between the microbiome environments of IBD vs non-IBD.
-It would be interesting to use interaction matrices derived from real receptor-signal pairs found in nature for simulations (see [@hiller_2020]). 
+It would be interesting to use interaction matrices derived from real receptor-signal pairs found in nature for simulations (see [@hiller_2020]).
 This could provide more insight into if these interaction matrices are important in determining disease states such as strep throat.
 
 \newpage
