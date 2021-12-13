@@ -150,7 +150,7 @@ So even though every strain "cheats" off of all strains at quorum, this appears 
 
 ## How $K_{ac}$ Density Affects Populations
 
-For this we wanted to examine how the sparsity of the $K_{ac}$ can affect the population.
+For this we wanted to examine how the sparsity of the $K_{ac}$ matrix can affect the population.
 Specifically, if a system has more QS interactions (more entries equal to 1) does this affect population sizes or relative abundances over time.
 In order to do so we generate $K_{ac}$ matrices randomly, starting with the null matrix (all 0s) and randomly set some entry $K_{ac}[i,j]$ to 1 and continue to set a new non-zero entry to 1 until some fraction $f$ of all entries in the matrix are filled.
 So  if we have a $4\times 4$ matrix and $f=0.5$ then we will generate 8 random matrices, with $1,2,\dots,8$ entries randomly chosen to not be zero.
@@ -159,13 +159,13 @@ For example, filling $3\times 3$ up to $f=0.5$, you can only fill 4 of 9 entries
 This is less apparent with larger populations (i.e. larger matrices).
 Again the specific function for is `random_matrix_generator()` in `src/matrix.py`.
 
-So for each $K_{ac}$ 250 simulations with random initial conditions are run and model statistics are calculated  as shown in Figure \ref{sparsity}.
-It is interesting to note that as we increase the density (number of non-zero entries) we can observe specific trends, like the Bray-Curtis distance  increasing and then plateauing at near 0.2.
+So for each $K_{ac}$ matrix 250 simulations with random initial conditions are run and model statistics are calculated as shown in Figure \ref{sparsity}.
+It is interesting to note that as we increase the density (number of non-zero entries) we can observe specific trends, like the Bray-Curtis distance increasing and then plateauing at near 0.2.
 We see a similar but nosier correlation between density and euclidean distance, although this may be explained by the fact that Bray-Curtis was designed specifically to compare the diversity of populations while euclidean is a generic measure of distance.
-It may be that despite the increasing density ultimately less than half of all possible QS interactions are present and this results in certain populations largely growing or shrinking over the course of the simulation.
+It may be that despite the increasing density, ultimately less than half of all possible QS interactions are present and this results in certain populations largely growing or shrinking over the course of the simulation.
 The growth rate and total abundance do not seem to obey obvious trends but this may be the result of "flattening" all of the information from each strain and looking at these statistics over all strains.
 
-Regardless it does appear that just the amount of QS interactions alone can strongly influence population trajectories, specifically how "different" the final population is from the original.
+Regardless, it does appear that just the amount of QS interactions alone can strongly influence population trajectories, specifically how "different" the final population is from the original.
 
 \FloatBarrier
 \begin{figure*}[h]
@@ -190,7 +190,7 @@ Simulations were then performed for each interaction matrix pattern with the ini
 Although there is a loss of information pertaining to the growth dynamics of each strain over time, graphs corresponding to the total cell densities over time were generated for each matrix pattern.
 
 The results below show that for most matrix patterns, given enough time, total cell densities are very similar across all diagnosis types.
-We observe differentiation between non-IBD and disease states for the case where all strains have the same receptor and are considered naive cooperators.
+We observe differentiation between non-IBD and disease states for the case where all strains have the same receptor and all strains are considered naive cooperators.
 Differentiation in the trajectory of total cell density is also observed for the identity matrix pattern which signifies that each bacteria has an independent QS system.
 An interesting result is that the complete matrix pattern, where every strain’s receptor binds every other strain’s signal, shows different trajectory between CD and the UC/nonIBD cases.
 
