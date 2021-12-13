@@ -42,47 +42,84 @@ Quorum sensing (QS) involves the ability of bacteria to change their population 
 
 These QS systems resemble some form of kin recognition as only bacteria that produce the unique signal - receptor pair take part in the production of the public good. However, bacteria that do not produce the signal - receptor pair, also called “cheaters”, can take advantage of the public good without incurring the expense of signal or public good production. Cheaters help maintain diversity in QS signaling systems as diverged incompatible QS systems are still maintained at the population level through the indiscriminate public good [@pollak_2015].
 
-These QS interactions naturally give rise to a matrix where row r_i represents straini’s receptor and column si represents straini’s signal. Matrix values are one if receptor - signal binding is possible and zero otherwise. Our project aims to understand how QS interactions amongst different bacterial strains affect the population structure. Specifically, we are interested in answering how different biologically relevant matrix patterns and matrix sparsity affect population statistics such as total population growth rate, population diversity, time until fixation. Developing an understanding of the significance of these QS interactions might allow one to manipulate microbial environments. This could prove to be a useful tool in medical applications such as gastrointestinal diseases or in improving environmental states in wastewater treatment facilities.
+These QS interactions naturally give rise to a matrix where row $R_i$ represents strain $i$’s receptor and column $S_i$ represents strain $i$’s signal. Matrix values are one if receptor - signal binding is possible and zero otherwise. Our project aims to understand how QS interactions amongst different bacterial strains affect the population structure. Specifically, we are interested in answering how different biologically relevant matrix patterns and matrix sparsity affect population statistics such as total population growth rate, population diversity, time until fixation. Developing an understanding of the significance of these QS interactions might allow one to manipulate microbial environments. This could prove to be a useful tool in medical applications such as gastrointestinal diseases or in improving environmental states in wastewater treatment facilities.
 
 Previous studies of QS systems have explored how and why evolutionary divergence of QS pathways occurs as well as how population diversity is maintained in the presence of obligate cheaters. These studies do not  investigate how specific patterns and level of interactions between QS systems affect population structure.
 
 
 # Methods
 
-## Basic QS Interaction Model
+We first note that all code, results and figures are available on GitHub [here](https://github.com/DJSiddharthVader/Simulations-02712-Project).
 
-### Assumptions
-- Very basic assumption is that QS directly controls the levels the public good production
-- Signal production is constitutive and quorum response is density dependent function of signal-bound receptor
-- QS system is composed of 3 genes encoding signaling molecule ($S$), receptor molecule ($R$), and public good product
-- The public good is a secreted enzyme whose product is a usable nutrient
-- Growth rate is dependent on the level of usable nutrient, Hollings type II term
-- Producing the public good reduces growth rate
-- Density dependent cell death, leading to a logistic form of growth equation
-- In the two divergent allele model (R1,R2) and (S1,S2), only 1 mutation allows the transition between alleles. R1 can only bind S1 and R2 can only bind S2
-- The public good is an Exo-enzyme ($E$), that  catalyzes the cleavage of a complex nutrient ($P$) into a transportable form ($P_d$)
-  - Level of $P$ is constant  
-- A fraction $r$ of the growth potential is diverted from growth to enzyme production at max production level
-- Quorum response function is a monotonically increasing function with maximum of 1
-- $R$-$S$ interaction occurs on a much faster time scale so they are in a quasi steady state and levels of receptor is constant --> Michaelis Menton Relationship between $[RS]$ and $S$
-- Quorum response form is $f(x) = x^m$
+In order to experiment and observe how QS interactions affect population structure we first needed to first obtain a representative model of a multi strain QS system.
+The model outlined in @eldar_2011 provided us with a good basis to test our questions.
+This model is defined by a system of ordinary differential equations which explain how the level of cell densities, signal molecules, enzyme, and public good change with respect to time.
+Note that we have have a separate equation for each strain and signaling molecule $i \in 1 \dots N$.
+\begin{align*} 
+    \frac{dn_i}{dt} &= n_i(\frac{P_d}{P_d+1}(1-rf(R^{active}i))-n_{tot}-\gamma_n)\\
+    \frac{dS_i}{dt} &= \beta_S(n_i-S_i)\\
+    \frac{dE}{dt} &= -\beta_EE+\sum_i f(R^{active}i)n_i\\
+    \frac{dP_d}{dt} &= J_{P_d}+V_{max}E-\beta_{P_d}(\frac{P_d}{P_d+1})n_{tot} 
+\end{align*}
+
+To investigate how different QS interactions affect the population levels of each strain we simulate the model with a constant set of parameters (see Table \ref{tab:param}).
+<!-- All of the parameter value are constant across all simulations and are specified in Table \ref{tab:param}, all also provided by @eldar_2011 . -->
+To carry out simulations of a QS system given this model, parameter set, and a given $K_ac$ matrix, the `solve_ivp` function from the scipy library is used to solve the above ODE system for a specified time range (200 time steps).
+The solver specifically implements the 4th order Runge Kutta approximation method as well as adaptive time steps to ensure stability and accuracy. 
+Our final resulting simulator function takes as input a vector of initial cell density for x number of strains, stopping time, and the QS interaction matrix between the all strains.
+
+Interaction matrices $K_{ac}$ are square binary matrices with dimension equal to the number of strains.
+We preformed simulations with both pre-defined matrices (e.g. identity) or with randomly generated matrices (start with a 0 matrix and randomly set entries to 1 up to a specified threshold).
+To see specifically how this is implemented see `src/matrix.py` in the GitHub repository for details.
+
+\FloatBarrier
+\begin{table}[h]
+    \centering
+    \begin{tabular}{crl}
+        \toprule
+        Parameter & Value & Description \\
+        \midrule
+$r$ &  0.5 &            growth cost of producing the public good\\
+$\gamma_n$ &  0.01 &    spontaneous cell death rate\\
+$\beta_S$ &  0.1 &      density dependant cell death rate\\
+$\beta_E$ &  0.2 &      spontaneous enzyme degradation rate\\
+$J_{P_d}$ & 0.20 &      spontaneous usable nutrient production rate\\
+$V_{max}$ &  20 &       enzyme activity rate\\
+$\beta_{P_D}$ &  100 &  usable nutrient consumption rate\\
+$m$ &  1 &              exponent in activation function $f(x) = x^m$\\
+$K_{RS}$ &  0.025 & receptor-signal binding constant\\
+$K_{ac}$ & varies & receptor-signal activation matrix\\
+        \bottomrule
+    \end{tabular}
+\caption{Parameters and values in the ODE model defined by Eldar, 2011.}
+\label{tab:param}
+\end{table}
+\FloatBarrier
+
+Using this basic model we examined how using different $K_{ac}$ matrices and using microbiome data to specify initial conditions would change population trajectories and the final population
 
 # Results
 
-## Comparing QS interaction matrices
+## Comparing QS Interaction Matrices
+
+Figure \ref{comparison} illustrates the growth rates of different bacteria strains (N1 through N6) as determined by the eight different $K_{ac}$ matrices.
+We see that in most cases, a larger initial abundance is associated with a larger growth rate.
+This is most apparent in the cycle and complete matrix patterns. It is also evident that regardless of initial abundance, different interaction matrices largely affect population structures.
+
+It is interesting to note between the initial and final timesteps we can get different relative abundances and largely different trajectories depending on the matrix specified.
+We still see "cheating" behaviours specified by @eldar_2011 using the `ident` matrix as even though the strains start at quite different abundances the least abundant strains (6 times smaller) still end up at similar final abundances to the most abundant initial strain.
+This is because the most abundant strain reaches quorum quickly, produces the public good and allows all other strains to benefit and grow without cost i.e. cheat.
 
 \FloatBarrier
 \begin{figure*}[h]
 \centering
 \includegraphics[width=\linewidth]{Documents/figures/k_ac_comparisons.png}
-\caption{}
+\caption{Population trajectories for 6 differnt strains using the ODE with different $K_{ac}$ matrices specified. The initlal abundances for each strain are $(0.0006, 0.001, 0.0015, 0.002. 0.0025, 0.003)$, chosen arbitrarily.}
 \label{comparison}
 \end{figure*}
 \FloatBarrier
 
-Text about matrices
-
-## Examining specific adjacency matrices
+## Examining Specific $K_{ac}$ Matrices
 
 \FloatBarrier
 \begin{figure*}[h]
@@ -93,9 +130,14 @@ Text about matrices
 \end{figure*}
 \FloatBarrier
 
-Text about patterns
+## How $K_{ac}$ Sparsity Affects Populations
 
-## How sparsity affects model dynamics
+For this we wanted to examine how the sparsity of the $K_{ac}$ can affect the population.
+Specifically, if a system has more QS interactions (more entries equal to 1) does this affect population sizes or relative abundances over time.
+In order to do so we generate $K_{ac}$ matrices randomly, starting with the null matrix (all 0s) and randomly set some entry $K_{ac}[i,j]$ to 1 and continue to set a new non-zero entry to 1 until some fraction $f$ of all entries in the matrix are filled.
+So  if we have a $4\times 4$ matrix and $f=0.5$ then we will generate 8 random matrices, with $1,2,\dots,8$ entries randomly chosen to not be zero.
+Again the specific function for this is `random_matrix_generator()` in `src/matrix.py`.
+So for each $K_{ac}$ we run a simulation and calculate model statistics.
 
 \FloatBarrier
 \begin{figure*}[h]
@@ -106,31 +148,46 @@ Text about patterns
 \end{figure*}
 \FloatBarrier
 
-Text about sparsity
-
 ## Simulations with OTU data
-As a way to explore our model with real data, we used data and metadata from the Inflammatory Bowel Multiomics Database to seed our simulator. The specific data we used contained taxonomic profiles for participants who were diagnosed into three classes, non-irritable bowel disease (non-IBD), ulcerative colitis(UC), and crohn's disease(CD).
 
-We were interested in observing if different biologically relevant interaction matrix patterns ($K_ac$) would play a role in differentiating the different disease states. For each set of participants with the same diagnosis, we created a strain abundance list which consisted of every bacterial strain and its corresponding average abundance derived from the taxonomic profiles of the participants.
-Simulations were then performed for each interaction matrix pattern with the initial cell density parameter set as the normalized strain abundance list for each diagnosis. Although there is a loss of information pertaining to the growth dynamics of each strain over time, graphs corresponding to the total cell densities over time were generated for each matrix pattern.
+We obtained microbiome data from HMP2, including OTU (Operational Taxonomic Unit) abundance data from stool samples and patient metadata [@microbiome].
+Specifically we care about the disease status as patients were either healthy (nonIBD), have ulcerative colitis (UC) or Crohn's Disease (CD).
+We had abundance data from 174 samples for 982 OTUs with 44 nonIBD, 44 UC and 86 CD samples.
+We use these abundance vectors as initial populations to our QS model and analyze the population trajectories. 
 
-The results below show that for most matrix patterns, given enough time, total cell densities are very similar across all diagnosis types. We observe differentiation between non-IBD and disease states for the case where all strains have the same receptor and are considered naive cooperators. Differentiation in the trajectory of total cell density is also observed for the identity matrix pattern which signifies that each bacteria has an independent qs system. An interesting result is that the complete matrix pattern, where every strain’s receptor binds every other strain’s signal, shows different trajectory between CD and the UC/nonIBD cases.
+We were interested in observing if different biologically relevant interaction matrix patterns ($K_{ac}$) would play a role in differentiating the different disease states.
+For each set of participants with the same diagnosis, we created a strain abundance list which consisted of every bacterial strain and its corresponding average abundance derived from the taxonomic profiles of the participants.
+Simulations were then performed for each interaction matrix pattern with the initial cell density parameter set as the normalized strain abundance list for each diagnosis.
+Although there is a loss of information pertaining to the growth dynamics of each strain over time, graphs corresponding to the total cell densities over time were generated for each matrix pattern.
+
+The results below show that for most matrix patterns, given enough time, total cell densities are very similar across all diagnosis types.
+We observe differentiation between non-IBD and disease states for the case where all strains have the same receptor and are considered naive cooperators.
+Differentiation in the trajectory of total cell density is also observed for the identity matrix pattern which signifies that each bacteria has an independent QS system.
+An interesting result is that the complete matrix pattern, where every strain’s receptor binds every other strain’s signal, shows different trajectory between CD and the UC/nonIBD cases.
 
 
 \FloatBarrier
 \begin{figure*}[h]
 \centering
 \includegraphics[width=\linewidth]{Documents/figures/microbiome_analysis.png}
-\caption{test}
+\caption{We plot the total abundance of all strains across time for each condition. In each case we use the specified $K_{ac}$ matrix with 133 strain abundances (normalized) from a single patient with the condition}
 \label{microbiome}
 \end{figure*}
 \FloatBarrier
 
 # Discussion
 
-It is hard to determine whether the specific type of interaction matrix from our set of biologically relevant matrices can significantly differentiate the trajectory of total cell densities between the microbiome environments of IBD vs non-IBD. It would be interesting to use empirical interaction matrices for simulations as it could provide more insight into if these interaction matrices are important in determining disease states.
+It is hard to determine whether the specific type of interaction matrix from our set of biologically relevant matrices can significantly differentiate the trajectory of total cell densities between the microbiome environments of IBD vs non-IBD.
+It would be interesting to use empirical interaction matrices for simulations as it could provide more insight into if these interaction matrices are important in determining disease states.
 
-# Contributions
+#### Contributions
+
+| Contribution       | People
+|:-------------------|:------------------------
+| Building the model | Sid, Evan, Neel
+| Analysis           | Sid, Evan, Neel, Deepika
+| Presenting         | Sid, Evan, Neel, Sarah
+| Writing the report | Sid, Evan, Neel, Deepika
 
 # Bibliography
 
