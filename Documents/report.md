@@ -31,7 +31,6 @@ author:
 institute:
   - num: 1
     name: Computational Biology Department, Carnegie Mellon University
-abstract: "example abstract"
 ---
 
 \newpage
@@ -140,11 +139,15 @@ This is because the most abundant strain reaches quorum quickly, produces the pu
 \centering
 \includegraphics[width=\linewidth]{Documents/figures/pattern_analysis.png}
 \label{patterns}
-\caption{How different $K_{ac}$ matrices can affect how a microbial population evolves. Each line represents the empirical cumulative distribution function of each statistic. Each color represents a different $K_{ac}$ matrix.}
+\caption{How different $K_{ac}$ matrices can affect how a microbial population evolves. Each line represents the empirical cumulative distribution function of each statistic. Each color represents a different $K_{ac}$ matrix. Each distribution is generated from 500 simulations with random initial conditions.}
 \end{figure*}
 \FloatBarrier
 
-test
+Figure \ref{patterns} shows what proportion of simulations had statistics below that value for the statistic.
+While there is significant diversity between matrices of the different statistics, it seems that across all statistics the complete matrix (all entries 1) appears the most different and has the largest variance (curves that are not steep).
+This is especially interesting as even though all strain contribute to the public good when any of them reach quorum we still get a wide range of values in both the total population size and the euclidean distance.
+In contrast for the identity matrix we see almost no diversity among the random initial conditions.
+So though every strain "cheats" of of all strains at quorum, this appears to lead to very little variance in both the growth rate of the entire population and the difference between the initial and final populations.
 
 ## How $K_{ac}$ Density Affects Populations
 
@@ -202,14 +205,18 @@ An interesting result is that the complete matrix pattern, where every strain’
 
 # Discussion
 
+It is clear that differences in QS interactions related to producing a public good can results in significantly different population dynamics.
+Further examinations of more biologically relevant scenarios may yield more interesting results, especially examining other sets of parameters and interactions.
+
 It is hard to determine whether the specific type of interaction matrix from our set of biologically relevant matrices can significantly differentiate the trajectory of total cell densities between the microbiome environments of IBD vs non-IBD.
-It would be interesting to use empirical interaction matrices for simulations as it could provide more insight into if these interaction matrices are important in determining disease states.
+It would be interesting to use interaction matrices derived from real receptor-signal pairs found in nature for simulations (see [@hiller_2020]). 
+This could provide more insight into if these interaction matrices are important in determining disease states such as strep throat.
 
 #### Contributions
 
 | Contribution       | People
 |:-------------------|:------------------------
-| Building the model | Sid, Evan, Neel
+| Building the model | Evan, Neel
 | Analysis           | Sid, Evan, Neel, Deepika, Sarah
 | Presentation       | Sid, Evan, Neel, Deepika, Sarah
 | Writing the report | Sid, Evan, Neel, Deepika, Sarah
