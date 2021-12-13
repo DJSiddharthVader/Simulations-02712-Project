@@ -98,6 +98,21 @@ $K_{ac}$ & varies & receptor-signal activation matrix\\
 
 Using this basic model we examined how using different $K_{ac}$ matrices and using microbiome data to specify initial conditions would change population trajectories and the final population
 
+## Model Statistics
+
+Here we list out the various model statistics calculated, the specific code is in `src/analysis.py`.
+Note that $t_0$ is the initial time step and $t_n$ is the final time step.
+
+| Statistic | Description |
+|:----------|:------------|
+| total     | The total abundance of all strains at $t_n$ |
+| growth_rate | The total groth rate of all strains |
+| has_grown | The number of strains with a larger abundance at $t_n$ than at $t_0$ |
+| euclidean | The euclidean distance between abundance vectors at $t_n$ and $t_0$ |
+| shannon index | The difference in Shannon Entropy between abundance vectors at $t_n$ and $t_0$ ($\alpha$-diversity metric) |
+| bray_curtix | The Bray-Curtis distance between abundance vectors at $t_n$ and $t_0$ ($\beta$-diversity metric) |
+
+
 # Results
 
 ## Comparing QS Interaction Matrices
