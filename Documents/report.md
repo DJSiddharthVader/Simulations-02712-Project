@@ -109,13 +109,12 @@ Note that $t_0$ is the initial time step and $t_n$ is the final time step.
 | growth_rate | The total groth rate of all strains |
 | has_grown | The number of strains with a larger abundance at $t_n$ than at $t_0$ |
 | euclidean | The euclidean distance between abundance vectors at $t_n$ and $t_0$ |
-| shannon index | The difference in Shannon Entropy between abundance vectors at $t_n$ and $t_0$ ($\alpha$-diversity metric) |
+| shannon index | The absolutve value of the difference in Shannon Entropy between abundance vectors at $t_n$ and $t_0$ ($\alpha$-diversity metric) |
 | bray_curtix | The Bray-Curtis distance between abundance vectors at $t_n$ and $t_0$ ($\beta$-diversity metric) |
-
 
 # Results
 
-## Comparing QS Interaction Matrices
+## Comparing $K_{ac}$ Matrices
 
 Figure \ref{comparison} illustrates the growth rates of different bacteria strains (N1 through N6) as determined by the eight different $K_{ac}$ matrices.
 We see that in most cases, a larger initial abundance is associated with a larger growth rate.
@@ -141,29 +140,50 @@ This is because the most abundant strain reaches quorum quickly, produces the pu
 \centering
 \includegraphics[width=\linewidth]{Documents/figures/pattern_analysis.png}
 \label{patterns}
-\caption{test}
+\caption{How different $K_{ac}$ matrices can affect how a microbial population evolves. Each line represents the empirical cumulative distribution function of each statistic. Each color represents a different $K_{ac}$ matrix.}
 \end{figure*}
 \FloatBarrier
 
-## How $K_{ac}$ Sparsity Affects Populations
+test
 
-For this we wanted to examine how the sparsity of the $K_{ac}$ can affect the population.
-Specifically, if a system has more QS interactions (more entries equal to 1) does this affect population sizes or relative abundances over time.
-In order to do so we generate $K_{ac}$ matrices randomly, starting with the null matrix (all 0s) and randomly set some entry $K_{ac}[i,j]$ to 1 and continue to set a new non-zero entry to 1 until some fraction $f$ of all entries in the matrix are filled.
-So  if we have a $4\times 4$ matrix and $f=0.5$ then we will generate 8 random matrices, with $1,2,\dots,8$ entries randomly chosen to not be zero.
-Again the specific function for this is `random_matrix_generator()` in `src/matrix.py`.
-So for each $K_{ac}$ we run a simulation and calculate model statistics.
+## How $K_{ac}$ Density Affects Populations
 
 \FloatBarrier
 \begin{figure*}[h]
 \centering
 \includegraphics[width=\linewidth]{Documents/figures/sparsity_analysis.png}
-\caption{test}
+\caption{Evaluation of different model statistics (columns) with different numbers of strains $N$ (rows). For each number of strains and statistics 250 simulations were run with random initial conditions. Shaded areas represent standard deviation of each statistic across the random initial conditions. Density specifically refers to $\frac{\text{sum}(K_{ac})}{|N|\times|N|}$, i.e. the fraction of all entries in $K_{ac}$ that are non-zero.}
 \label{sparsity}
 \end{figure*}
 \FloatBarrier
 
+For this we wanted to examine how the sparsity of the $K_{ac}$ can affect the population.
+Specifically, if a system has more QS interactions (more entries equal to 1) does this affect population sizes or relative abundances over time.
+In order to do so we generate $K_{ac}$ matrices randomly, starting with the null matrix (all 0s) and randomly set some entry $K_{ac}[i,j]$ to 1 and continue to set a new non-zero entry to 1 until some fraction $f$ of all entries in the matrix are filled.
+So  if we have a $4\times 4$ matrix and $f=0.5$ then we will generate 8 random matrices, with $1,2,\dots,8$ entries randomly chosen to not be zero.
+Note that the plots are quite jagged in some cases due to the limited size of the matrix.
+For example, filling $3\times 3$ up to $f=0.5$, you can only fill 4 of 9 entries so we only get results for 4 specific sparsity values. 
+This is less apparent with larger populations (i.e. larger matrices).
+Again the specific function for is `random_matrix_generator()` in `src/matrix.py`.
+
+So for each $K_{ac}$ 250 simulations with random initial conditions are run and model statistics are calculated  as shown in Figure \ref{sparsity}.
+It is interesting to note that as we increase the density (number of non-zero entries) we can observe specific trends, like the Bray-Curtis distance  increasing and then plateauing at near 0.2.
+We see a similar but nosier correlation between density and euclidean distance, although this may be explained by the fact that Bray-Curtis was designed specifically to compare the diversity of populations while euclidean is a generic measure of distance.
+It may be that despite the increasing density ultimately less than half of all possible QS interactions are present and this results in certain populations largely growing or shrinking over the course of the simulation.
+The growth rate and total abundance do not seem to obey obvious trends but this may be the result of "flattening" all of the information from each strain and looking at these statistics over all strains. 
+
+Regardless it does appear that just the amount of QS interactions alone can strongly influence population trajectories, specifically how "different" the final population is from the original.
+
 ## Simulations with OTU data
+
+\FloatBarrier
+\begin{figure*}[h]
+\centering
+\includegraphics[width=\linewidth]{Documents/figures/microbiome_analysis.png}
+\caption{We plot the total abundance of all strains across time for each condition. In each case we use the specified $K_{ac}$ matrix with 133 strain abundances (normalized) from a single patient with each condition.}
+\label{microbiome}
+\end{figure*}
+\FloatBarrier
 
 We obtained microbiome data from HMP2, including OTU (Operational Taxonomic Unit) abundance data from stool samples and patient metadata [@microbiome].
 Specifically we care about the disease status as patients were either healthy (nonIBD), have ulcerative colitis (UC) or Crohn's Disease (CD).
@@ -180,16 +200,6 @@ We observe differentiation between non-IBD and disease states for the case where
 Differentiation in the trajectory of total cell density is also observed for the identity matrix pattern which signifies that each bacteria has an independent QS system.
 An interesting result is that the complete matrix pattern, where every strain’s receptor binds every other strain’s signal, shows different trajectory between CD and the UC/nonIBD cases.
 
-
-\FloatBarrier
-\begin{figure*}[h]
-\centering
-\includegraphics[width=\linewidth]{Documents/figures/microbiome_analysis.png}
-\caption{We plot the total abundance of all strains across time for each condition. In each case we use the specified $K_{ac}$ matrix with 133 strain abundances (normalized) from a single patient with the condition}
-\label{microbiome}
-\end{figure*}
-\FloatBarrier
-
 # Discussion
 
 It is hard to determine whether the specific type of interaction matrix from our set of biologically relevant matrices can significantly differentiate the trajectory of total cell densities between the microbiome environments of IBD vs non-IBD.
@@ -201,8 +211,9 @@ It would be interesting to use empirical interaction matrices for simulations as
 |:-------------------|:------------------------
 | Building the model | Sid, Evan, Neel
 | Analysis           | Sid, Evan, Neel, Deepika
-| Presenting         | Sid, Evan, Neel, Sarah
-| Writing the report | Sid, Evan, Neel, Deepika
+| Presentation       | Sid, Evan, Neel, Deepika, Sarah
+| Writing the report | Sid, Evan, Neel, Deepika, Sarah
+
+\newpage
 
 # Bibliography
-
