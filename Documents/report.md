@@ -19,7 +19,6 @@ date: \today
 author:
   - name: Siddharth Reed
     affiliation: 1
-    email: slreed@andrew.cmu.edu
   - name: Evan Trop
     affiliation: 1
   - name: Neel Mehtani
