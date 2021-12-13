@@ -19,7 +19,6 @@ date: \today
 author:
   - name: Siddharth Reed
     affiliation: 1
-    email: slreed@andrew.cmu.edu
   - name: Evan Trop
     affiliation: 1
   - name: Neel Mehtani
@@ -31,7 +30,6 @@ author:
 institute:
   - num: 1
     name: Computational Biology Department, Carnegie Mellon University
-abstract: "example abstract"
 ---
 
 \newpage
@@ -135,27 +133,22 @@ This is because the most abundant strain reaches quorum quickly, produces the pu
 
 ## Examining Specific $K_{ac}$ Matrices
 
+Figure \ref{patterns} shows what proportion of simulations had statistics below that value for the statistic.
+While there is significant diversity between matrices of the different statistics, it seems that across all statistics the complete matrix (all entries 1) appears the most different and has the largest variance (curves that are not steep).
+This is especially interesting as even though all strain contribute to the public good when any of them reach quorum we still get a wide range of values in both the total population size and the euclidean distance.
+In contrast for the identity matrix we see almost no diversity among the random initial conditions.
+So though every strain "cheats" of of all strains at quorum, this appears to lead to very little variance in both the growth rate of the entire population and the difference between the initial and final populations.
+
 \FloatBarrier
 \begin{figure*}[h]
 \centering
 \includegraphics[width=\linewidth]{Documents/figures/pattern_analysis.png}
 \label{patterns}
-\caption{How different $K_{ac}$ matrices can affect how a microbial population evolves. Each line represents the empirical cumulative distribution function of each statistic. Each color represents a different $K_{ac}$ matrix.}
+\caption{How different $K_{ac}$ matrices can affect how a microbial population evolves. Each line represents the empirical cumulative distribution function of each statistic. Each color represents a different $K_{ac}$ matrix. Each distribution is generated from 500 simulations with random initial conditions.}
 \end{figure*}
 \FloatBarrier
-
-test
 
 ## How $K_{ac}$ Density Affects Populations
-
-\FloatBarrier
-\begin{figure*}[h]
-\centering
-\includegraphics[width=\linewidth]{Documents/figures/sparsity_analysis.png}
-\caption{Evaluation of different model statistics (columns) with different numbers of strains $N$ (rows). For each number of strains and statistics 250 simulations were run with random initial conditions. Shaded areas represent standard deviation of each statistic across the random initial conditions. Density specifically refers to $\frac{\text{sum}(K_{ac})}{|N|\times|N|}$, i.e. the fraction of all entries in $K_{ac}$ that are non-zero.}
-\label{sparsity}
-\end{figure*}
-\FloatBarrier
 
 For this we wanted to examine how the sparsity of the $K_{ac}$ can affect the population.
 Specifically, if a system has more QS interactions (more entries equal to 1) does this affect population sizes or relative abundances over time.
@@ -174,16 +167,17 @@ The growth rate and total abundance do not seem to obey obvious trends but this 
 
 Regardless it does appear that just the amount of QS interactions alone can strongly influence population trajectories, specifically how "different" the final population is from the original.
 
-## Simulations with OTU data
-
 \FloatBarrier
 \begin{figure*}[h]
 \centering
-\includegraphics[width=\linewidth]{Documents/figures/microbiome_analysis.png}
-\caption{We plot the total abundance of all strains across time for each condition. In each case we use the specified $K_{ac}$ matrix with 133 strain abundances (normalized) from a single patient with each condition.}
-\label{microbiome}
+\includegraphics[width=\linewidth]{Documents/figures/sparsity_analysis.png}
+\caption{Evaluation of different model statistics (columns) with different numbers of strains $N$ (rows). For each number of strains and statistics 250 simulations were run with random initial conditions. Shaded areas represent standard deviation of each statistic across the random initial conditions. Density specifically refers to $\frac{\text{sum}(K_{ac})}{|N|\times|N|}$, i.e. the fraction of all entries in $K_{ac}$ that are non-zero.}
+\label{sparsity}
 \end{figure*}
 \FloatBarrier
+
+
+## Simulations with OTU data
 
 We obtained microbiome data from HMP2, including OTU (Operational Taxonomic Unit) abundance data from stool samples and patient metadata [@microbiome].
 Specifically we care about the disease status as patients were either healthy (nonIBD), have ulcerative colitis (UC) or Crohn's Disease (CD).
@@ -200,20 +194,33 @@ We observe differentiation between non-IBD and disease states for the case where
 Differentiation in the trajectory of total cell density is also observed for the identity matrix pattern which signifies that each bacteria has an independent QS system.
 An interesting result is that the complete matrix pattern, where every strain’s receptor binds every other strain’s signal, shows different trajectory between CD and the UC/nonIBD cases.
 
+\FloatBarrier
+\begin{figure*}[h]
+\centering
+\includegraphics[width=\linewidth]{Documents/figures/microbiome_analysis.png}
+\caption{We plot the total abundance of all strains across time for each condition. In each case we use the specified $K_{ac}$ matrix with 133 strain abundances (normalized) from a single patient with each condition.}
+\label{microbiome}
+\end{figure*}
+\FloatBarrier
+
 # Discussion
 
+It is clear that differences in QS interactions related to producing a public good can results in significantly different population dynamics.
+Further examinations of more biologically relevant scenarios may yield more interesting results, especially examining other sets of parameters and interactions.
+
 It is hard to determine whether the specific type of interaction matrix from our set of biologically relevant matrices can significantly differentiate the trajectory of total cell densities between the microbiome environments of IBD vs non-IBD.
-It would be interesting to use empirical interaction matrices for simulations as it could provide more insight into if these interaction matrices are important in determining disease states.
+It would be interesting to use interaction matrices derived from real receptor-signal pairs found in nature for simulations (see [@hiller_2020]). 
+This could provide more insight into if these interaction matrices are important in determining disease states such as strep throat.
+
+\newpage
 
 #### Contributions
 
 | Contribution       | People
 |:-------------------|:------------------------
-| Building the model | Sid, Evan, Neel
+| Building the model | Evan, Neel
 | Analysis           | Sid, Evan, Neel, Deepika, Sarah
 | Presentation       | Sid, Evan, Neel, Deepika, Sarah
 | Writing the report | Sid, Evan, Neel, Deepika, Sarah
-
-\newpage
 
 # Bibliography
