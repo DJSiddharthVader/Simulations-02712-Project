@@ -210,7 +210,7 @@ It would be interesting to use empirical interaction matrices for simulations as
 | Contribution       | People
 |:-------------------|:------------------------
 | Building the model | Sid, Evan, Neel
-| Analysis           | Sid, Evan, Neel, Deepika
+| Analysis           | Sid, Evan, Neel, Deepika, Sarah
 | Presentation       | Sid, Evan, Neel, Deepika, Sarah
 | Writing the report | Sid, Evan, Neel, Deepika, Sarah
 
