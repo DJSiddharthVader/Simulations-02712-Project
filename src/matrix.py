@@ -60,10 +60,12 @@ def random_matrix_generator(n, s, m=-1):
     non_zero_entries = [indices[x] for x in non_zero_entries]
     # make the random cells 1
     for i, j in non_zero_entries:
-        tmp = matrix.copy()
-        tmp[i][j] = 1
-        yield tmp
-        matrix = tmp
+        matrix[i][j] = 1
+        yield matrix.copy()
+        # tmp = matrix.copy()
+        # tmp[i][j] = 1
+        # yield tmp
+        # matrix = tmp
 
 
 def random_matrix(n, s, m=-1):
@@ -89,7 +91,7 @@ def pattern_matrix(pattern, n):
     :param n: size of the matrix (always square)
     """
     if pattern == 'null':
-        # no QS interactions
+        # no QS interactions, all 0's
         return np.zeros((n, n))
     elif pattern == 'ident':
         # Each OTU can only interact with its
@@ -119,7 +121,7 @@ def pattern_matrix(pattern, n):
         # simple cycle graph on all nodes
         graph = gen.classic.cycle_graph(n)
     elif pattern == 'complete':
-        # every receptor binds every singal
+        # every strain has every signal and receptor
         graph = gen.complete_graph(n)
     elif pattern == 'star':
         # central node connected to all others

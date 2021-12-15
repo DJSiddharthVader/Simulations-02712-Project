@@ -65,8 +65,8 @@ def compute_stats(N):
     stats["total"] = total(N.T)
     stats["growth_rate"] = growth_rate(N.T)
     stats["has_grown"] = has_grown(N.T)
-    # stats["skew"] = skewness(N.T)
     stats["euclidian"] = euclidian(N.T)
+    # stats["skew"] = skewness(N.T)
     # normalize for diversity metrics
     N = np.apply_along_axis(normalize, 1, N.T).T
     stats["shannon_index"] = shannon_index(N.T)
@@ -112,8 +112,7 @@ def euclidian(timesteps):
 
     :param timesteps: abudance vector at each time step
     """
-    tn, t1 = timesteps[-1], timesteps[0]
-    return euclidian_(tn, t1)
+    return euclidian_(timesteps[-1], timesteps[0])
 
 
 def skewness(timesteps):
@@ -124,8 +123,7 @@ def skewness(timesteps):
 
     :param timesteps: abudance vector at each time step
     """
-    tn, t1 = skewness_(timesteps[-1]), skewness_(timesteps[0])
-    return tn - t1
+    return skewness_(timesteps[-1]) - skewness_(timesteps[0])
 
 
 def shannon_index(timesteps):
@@ -135,8 +133,7 @@ def shannon_index(timesteps):
 
     :param timesteps: abudance vector at each time step
     """
-    tn, t1 = shannon_index_(timesteps[-1]), shannon_index_(timesteps[0])
-    return tn - t1
+    return shannon_index_(timesteps[-1]) - shannon_index_(timesteps[0])
 
 
 def bray_curtis(timesteps):
@@ -149,8 +146,7 @@ def bray_curtis(timesteps):
 
     :param timesteps: abudance vector at each time step
     """
-    tn, t1 = timesteps[-1], timesteps[0]
-    return bray_curtis_(tn, t1)
+    return bray_curtis_(timesteps[-1], timesteps[0])
 
 
 # Statistics computed on a single abundance vector
