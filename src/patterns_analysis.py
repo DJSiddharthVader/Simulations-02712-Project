@@ -50,7 +50,7 @@ def analyze(inits, patterns, end_time, params=None):
     :param params: simulation parameters, use defualt if not specified
     """
     dfs = []
-    for pattern in tqdm(patterns, desc='pattern', leave=True):
+    for pattern in tqdm(patterns, desc='pattern', leave=False):
         rows, K_ac = [], matrix.pattern_matrix(pattern, len(inits[0]))
         for p_i, init in enumerate(tqdm(inits, desc='init', leave=False)):
             # simulate
