@@ -25,8 +25,8 @@ def append_static_col(df, value, name):
     :param value: column value
     :param name: column name
     """
-    col = pd.DataFrame({name: [value]*df.shape[0]})
-    return pd.concat([df, col], axis=1)
+    df[name] = pd.Series([value]*df.shape[0])
+    return df
 
 
 def normalize(abundance):
@@ -179,7 +179,7 @@ def shannon_index_(abundance):
 
     :param abundance: bacterial abundance vector
     """
-    return -sum([p_i*np.log2(p_i) for p_i in abundance])
+    return -sum([p_i*np.log2(p_i) for p_i in abundance if p_i > 0])
 
 
 def bray_curtis_(abundance1, abundance2):
