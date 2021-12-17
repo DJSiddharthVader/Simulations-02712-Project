@@ -50,4 +50,4 @@ def filter_abundances(thresh):
 
 if __name__ == '__main__':
     clean_metadata()
-    filter_abundances(0.5)
+    filter_abundances(0.47)
