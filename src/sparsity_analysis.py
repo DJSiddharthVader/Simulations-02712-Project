@@ -1,6 +1,6 @@
 import matrix
 import model
-import analysis
+import utils
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -60,12 +60,12 @@ def analyze(sizes, n, lower, upper, get_sparsity, end_time):
         K_acs = list(matrix.random_matrix_generator(size, max_s))
         for K_ac in tqdm(K_acs, desc='density', leave=False):
             density = np.sum(K_ac)/(size*size)
-            inits = analysis.make_random_abundances(size, n, lower, upper)
+            inits = utils.make_random_abundances(size, n, lower, upper)
             for p_i, init in enumerate(tqdm(inits, desc='init', leave=False)):
                 # simulate
                 t, N, S, E, P = model.simulate(K_ac, init, end_time)
                 # calculate statistics
-                row = analysis.compute_stats(N)
+                row = utils.compute_stats(N)
                 row["init"] = p_i
                 row['density'] = density
                 row['size'] = size

@@ -3,7 +3,7 @@ import seaborn as sns
 from tqdm.notebook import tqdm
 import matrix
 import model
-import analysis as an
+import utils
 
 
 """
@@ -56,11 +56,11 @@ def analyze(inits, patterns, end_time, params=None):
             # simulate
             t, N, S, E, P = model.simulate(K_ac, init, end_time, params=params)
             # calculate statistics
-            row = an.compute_stats(N)
+            row = utils.compute_stats(N)
             row["init"] = p_i
             rows.append(row)
         # consolidate data for all inits all for K_ac
         df = pd.DataFrame(rows)
-        df = an.append_static_col(df, pattern, "pattern")
+        df = utils.append_static_col(df, pattern, "pattern")
         dfs += [df]
     return pd.concat(dfs)
