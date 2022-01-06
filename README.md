@@ -36,6 +36,7 @@ Requires:
     - `numpy`
     - `scipy`
     - `seaborn`
+    - `jupyter-lab`
     - `pandoc` (for making slides/report)
 
 ### Replicating our Results
@@ -66,17 +67,17 @@ $ make documents # make report and slides
 ## TODO
 
 - [ ] Use model to answer Questions
-  - [ ] What happens as sparsity decreases?
+  - [x] What happens as sparsity decreases?
   - [x] How do specific "patterned" matrices affect the population?
     - [x] population trajectories for different matrices
     - [x] model statistics for different matrices
-  - [ ] What happens using real data as initial conditions?
+  - [x] What happens using real data as initial conditions?
   - [ ] How does the model work with a biologically informed K_ac
 
 - [ ] Writing the background, motivation and methods
   - [x] what are QS systems?
   - [x] what makes QS systems incompatible and how does this lead to "cheating"?
-  - [ ] are there medical/research/environmental reasons to care about this?
+  - [ ] what are there medical/research/environmental reasons to care about this?
   - [x] steal the cool diagram from @eldar_2011 (Fig 2?)
   - [x] basics of the ODE model
     - [ ] ~~one slide on Runge-Katta methods? (what scipy uses)~~
